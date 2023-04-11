@@ -53,6 +53,6 @@
   },
   "comments": {
     "backend_api": "https://picture-perfect-backend.onrender.com",
-    "backend_api_local": "http://localhost:4000"
+    "backend_api_local": "http://localhost:5000"
   }
 }
