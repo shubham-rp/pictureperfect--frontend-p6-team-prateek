@@ -245,7 +245,7 @@ export default function StudioDashboardLayout({
               </ListItemIcon>
               <ListItemText
                 primary={studioName}
-                // secondary={studioCity}
+                secondary={studioCity}
                 sx={{ opacity: open ? 1 : 0 }}
               />
             </ListItemButton>

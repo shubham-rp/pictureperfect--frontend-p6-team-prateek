@@ -28,6 +28,14 @@ const useStyles = makeStyles()((theme) => {
     table: {
       minWidth: 650,
     },
+    dialogHeader: {
+      textAlign: "center",
+      fontWeight: "bold",
+      color: theme.palette.primary.main,
+    },
+    dialogContentTextHeader: {
+      fontWeight: "bold",
+    },
   };
 });
 
@@ -101,7 +109,7 @@ function BookingTable() {
                 {bookings.map((booking, index) => (
                   <TableRow key={booking._id}>
                     <TableCell>{index + 1}</TableCell>
-                    <TableCell>{booking._id}</TableCell>
+                    <TableCell>{booking.bookingId}</TableCell>
                     <TableCell>{booking.userName}</TableCell>
                     <TableCell>{booking.userSelectCategory[0]}</TableCell>
                     <TableCell>
@@ -126,16 +134,69 @@ function BookingTable() {
           </TableContainer>
           {selectedBooking && (
             <Dialog open={open} onClose={handleClose}>
-              <DialogTitle>Booking Details</DialogTitle>
+              <DialogTitle className={classes.dialogHeader}>
+                Booking Details
+              </DialogTitle>
               <DialogContent>
                 <DialogContentText>
-                  Booking ID: {selectedBooking._id}
+                  <span className={classes.dialogContentTextHeader}>
+                    {" "}
+                    Booking ID:
+                  </span>{" "}
+                  {selectedBooking.bookingId}
                   <br />
-                  From Date: {handleDateDisplay(selectedBooking.fromDate)}
                   <br />
-                  To Date: {handleDateDisplay(selectedBooking.toDate)}
+                  <span className={classes.dialogContentTextHeader}>
+                    Event:
+                  </span>{" "}
+                  {selectedBooking.userSelectCategory}
                   <br />
-                  Studio Name: {selectedBooking.studioName}
+                  <br />
+                  <span className={classes.dialogContentTextHeader}>
+                    Client Name:
+                  </span>{" "}
+                  {selectedBooking.userName}
+                  <br />
+                  <br />
+                  <span className={classes.dialogContentTextHeader}>
+                    Amount Paid:{" "}
+                  </span>{" "}
+                  {selectedBooking.totalAmount}
+                  <br />
+                  <br />
+                  <span className={classes.dialogContentTextHeader}>
+                    {" "}
+                    Event Address:
+                  </span>{" "}
+                  {selectedBooking.userAddress} {selectedBooking.userPinCode}
+                  <br />
+                  <br />
+                  <span className={classes.dialogContentTextHeader}>
+                    Contact Number:
+                  </span>{" "}
+                  {selectedBooking.userContactNumber}
+                  <br />
+                  <span className={classes.dialogContentTextHeader}>
+                    Alternate Contact Number:
+                  </span>{" "}
+                  {selectedBooking.userAlternateContactNumber}
+                  <br />
+                  <span className={classes.dialogContentTextHeader}>
+                    {" "}
+                    Email :
+                  </span>{" "}
+                  {selectedBooking.userEmail}
+                  <br />
+                  <br />
+                  <span className={classes.dialogContentTextHeader}>
+                    From Date:
+                  </span>{" "}
+                  {handleDateDisplay(selectedBooking.fromDate)}
+                  <br />
+                  <span className={classes.dialogContentTextHeader}>
+                    To Date:
+                  </span>{" "}
+                  {handleDateDisplay(selectedBooking.toDate)}
                   <br />
                   {/* add additional fields here */}
                 </DialogContentText>
