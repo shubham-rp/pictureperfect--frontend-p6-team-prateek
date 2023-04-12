@@ -228,6 +228,7 @@ export default function BookingFlow() {
   const [currentForm, setCurrentForm] = useState("bookingForm");
   const [numberOfDays, setNumberOfDays] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [bookingId, setBookingId] = useState("");
 
   const [flag, setFlag] = useState(true);
   const [error, setError] = useState({});
@@ -348,7 +349,7 @@ export default function BookingFlow() {
           }
         )
         .then((response) => {
-          console.log(response.data);
+          setBookingId(response.data);
 
           setIsLoading(false);
           setCurrentForm("bookingConfirmation");
@@ -871,7 +872,9 @@ export default function BookingFlow() {
                     handleProccedToPayments={handleProccedToPayments}
                   />
                 ),
-                bookingConfirmation: <BookingConfirmation />,
+                bookingConfirmation: (
+                  <BookingConfirmation bookingId={bookingId} />
+                ),
               }[currentForm]
             }
           </Stack>
