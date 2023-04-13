@@ -301,7 +301,13 @@ export default function ClientDashboardLayout({
                 explore: <Explore />,
                 // starred: <ClientStarred />,
                 booking: <ClientBookingHistory />,
-                profile: <ClientEditProfile />,
+                profile: (
+                  <ClientEditProfile
+                    clientFirstName={clientFirstName}
+                    clientLastName={clientLastName}
+                    clientDefaultCity={clientDefaultCity}
+                  />
+                ),
                 studioProfile: <StudioProfile {...studioData} />,
               }[componentToBeDisplayed]
             }

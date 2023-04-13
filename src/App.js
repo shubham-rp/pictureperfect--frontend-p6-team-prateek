@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import { Toaster } from "react-hot-toast";
 import LandingPage from "./pages/landing-page/LandingPage";
 import Login from "./pages/login/Login";
 import SignUpEndUser from "./pages/sign-up-end-user/SignUpEndUser";
@@ -47,6 +47,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            duration: 3000,
+          }}
+        />
         <Routes>
           <Route
             exact
