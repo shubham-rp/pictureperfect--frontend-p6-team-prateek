@@ -22,7 +22,6 @@ function ClientDashboard() {
   const [isLoading, setIsloading] = useState(true);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [defaultCity, setDefaultCity] = useState("");
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -39,7 +38,6 @@ function ClientDashboard() {
       if (response.ok) {
         setFirstName(userData.firstName);
         setLastName(userData.lastName);
-        setDefaultCity(userData.defaultCity);
       }
     };
 
@@ -59,7 +57,6 @@ function ClientDashboard() {
         <ClientDashboardLayout
           clientFirstName={firstName}
           clientLastName={lastName}
-          clientDefaultCity={defaultCity}
         />
       )}
     </>

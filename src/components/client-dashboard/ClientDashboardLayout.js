@@ -136,7 +136,6 @@ const useStyles = makeStyles()((theme) => {
 export default function ClientDashboardLayout({
   clientFirstName,
   clientLastName,
-  clientDefaultCity,
 }) {
   const [open, setOpen] = useState(false);
   const { user } = useAuthContext();
@@ -249,7 +248,6 @@ export default function ClientDashboardLayout({
                   </ListItemIcon>
                   <ListItemText
                     primary={`${clientFirstName} ${clientLastName}`}
-                    secondary={clientDefaultCity}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
                 </ListItemButton>
@@ -305,7 +303,6 @@ export default function ClientDashboardLayout({
                   <ClientEditProfile
                     clientFirstName={clientFirstName}
                     clientLastName={clientLastName}
-                    clientDefaultCity={clientDefaultCity}
                   />
                 ),
                 studioProfile: <StudioProfile {...studioData} />,

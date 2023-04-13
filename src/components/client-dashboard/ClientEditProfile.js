@@ -53,11 +53,7 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const ClientEditProfile = ({
-  clientFirstName,
-  clientLastName,
-  clientDefaultCity,
-}) => {
+const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
   const { classes } = useStyles();
   const { user } = useAuthContext();
   const [editUserFirstName, setEditUserFirstName] = useState(clientFirstName);
@@ -66,12 +62,12 @@ const ClientEditProfile = ({
   const [basicDetailsOpen, setBasicDetailsOpen] = useState(false);
   const [isUpdateBasicDetailsDisabled, setIsUpdateBasicDetailsDisabled] =
     useState(true);
+  const [isUpdateEmailDisabled, setIsUpdateEmailDisabled] = useState(true);
 
   const [emailOpen, setEmailOpen] = useState(false);
-  const [passwordOpen, setPasswordOpen] = useState(false);
+  //const [passwordOpen, setPasswordOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccessful, setIsSuccessful] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isEmailLoading, setIsEmailLoading] = useState(false);
 
   const handleUserFirstName = (e) => {
     e.preventDefault();
@@ -121,8 +117,8 @@ const ClientEditProfile = ({
     setIsLoading(true);
 
     axios
-      .get(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/client/profile`,
+      .put(
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/clients/profile/basicDetails`,
         {
           editUserFirstName,
           editUserLastName,
@@ -134,12 +130,12 @@ const ClientEditProfile = ({
         }
       )
       .then((response) => {
-        toast.success("Successfully toasted!");
+        toast.success("Name Successfully Updated!");
         console.log(response.data);
         setIsLoading(false);
       })
       .catch((error) => {
-        toast.error("Details not updated");
+        toast.error("Name not updated");
         setIsLoading(false);
         console.error(error);
       });
@@ -150,12 +146,54 @@ const ClientEditProfile = ({
   const handleEditUserEmail = (e) => {
     e.preventDefault();
 
+    if (e.target.value !== "" && e.target.value !== user.email) {
+      setIsUpdateEmailDisabled(false);
+    }
+
+    if (e.target.value === "" || e.target.value === user.email) {
+      setIsUpdateEmailDisabled(true);
+    }
+
     setEditUserEmail(e.target.value);
   };
 
   const handleUpdateUserEmail = (e) => {
     e.preventDefault();
+    setEmailOpen(false);
+    setIsEmailLoading(true);
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/clients/profile/email`,
+        {
+          editUserEmail,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        toast.success("Email Successfully updated!");
+        console.log(response.data);
+        setIsEmailLoading(false);
+      })
+      .catch((error) => {
+        toast.error("Email not updated");
+        setIsEmailLoading(false);
+        console.error(error);
+      });
+
     console.log(editUserEmail);
+  };
+
+  const handleEmailOpen = () => {
+    setEmailOpen(true);
+  };
+
+  const handleEmailClose = () => {
+    setEmailOpen(false);
   };
 
   const handleBasicDetailsOpen = () => {
@@ -255,11 +293,36 @@ const ClientEditProfile = ({
           <Button
             variant="contained"
             className={classes.editProfileButton}
-            onClick={handleUpdateUserEmail}
+            onClick={handleEmailOpen}
+            disabled={isUpdateEmailDisabled}
           >
             Verify & Update Email
           </Button>
         </Grid>
+        <Dialog
+          open={emailOpen}
+          onClose={handleEmailClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle
+            id="alert-dialog-title"
+            className={classes.dialogAlertHeader}
+          >
+            <ErrorTwoToneIcon />
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to update your email ?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleEmailClose}>No</Button>
+            <Button onClick={handleUpdateUserEmail} autoFocus>
+              Yes
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Grid>
 
       <Divider />
