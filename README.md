@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Picture Perfect
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### A platform which connects Photo Studios with potential customers.
 
-## Available Scripts
+The application is split into a frontend that will be hosted on Netlify and a backend that will be hosted on Render. (Backend repository is provided separately)
 
-In the project directory, you can run:
+### Getting Started
 
-### `npm start`
+To get started with this application, follow these steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone this repository to your local machine.
+2. Install the dependencies by running npm install.
+3. Create a .env.local file in the root of the project and fill in the required environment variables (see the "Environment Variables" section below).
+4. Run the application using npm start.
+5. The application should now be running at http://localhost:3000.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Environment Variables
 
-### `npm test`
+The following environment variables are used by this application:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`REACT_APP_API_URL`: The URL of the backend API. This should be set to the URL of your Render deployment.
 
-### `npm run build`
+To set these environment variables, create a file called .env.local in the root of the project and add the following lines:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+REACT_APP_API_URL=<your Render API URL>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Deploying to Netlify
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To deploy the frontend of this application to Netlify, follow these steps:
 
-### `npm run eject`
+1. Create a new site in Netlify.
+2. Connect the site to your Git repository.
+3. Set the following build settings:
+   Build command: `CI= npm run build`
+   Publish directory: build/
+4. Set the following environment variables:
+   REACT_APP_API_URL: The URL of the backend API. This should be set to the URL of your Render deployment.
+5. Deploy the site.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Deploying the backend to Render
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To deploy the backend of this application to Render, follow these steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Create a new Node.js web service in Render.
+2. Connect the service to your Git repository.
+3. Set the following environment variables:
+   `PORT`
+   `DB_URL`
+   `SECRET`
+   `AWS_BUCKET_NAME`
+   `AWS_BUCKET_REGION`
+   `AWS_ACCESS_KEY`
+   `AWS_SECRET_KEY`
+   `RAZORPAY_KEY`
+   `RAZORPAY_SECRET`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Deploy the service.
 
-## Learn More
+### Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If you would like to contribute to this project, please follow these guidelines:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork this repository to your own GitHub account and clone it to your local machine.
+2. Create a new branch for your changes using git checkout -b <branch-name>.
+3. Make your changes and commit them with a descriptive message.
+4. Push your changes to your fork using git push origin <branch-name>.
+5. Submit a pull request to this repository.

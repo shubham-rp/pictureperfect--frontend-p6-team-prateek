@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { cities } from "../../../assets/mock-data/cities";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
 import {
   Box,
@@ -26,6 +27,13 @@ const useStyles = makeStyles()((theme) => {
     editProfileButton: {
       borderRadius: 24,
     },
+    editProfileDetailsButton: {
+      borderRadius: 24,
+    },
+    editProfileDetailsButtonWrapper: {
+      display: "flex",
+      justifyContent: "center",
+    },
     updatePasswordButtonWrapper: {
       display: "flex",
       justifyContent: "right",
@@ -40,6 +48,7 @@ const useStyles = makeStyles()((theme) => {
     },
     addressTextInputField: {
       width: "90%",
+      paddingTop: "10px",
     },
     emailIdTextField: {
       width: 429,
@@ -50,9 +59,33 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-function StudioEditProfile() {
+function StudioEditProfile({
+  studio,
+  studioName,
+  studioCity,
+  studioPhoneNumber,
+  studioWhatsAppNumber,
+  studioAddress,
+  studioPincode,
+  studioAbout,
+  studioDailyRate,
+}) {
   const { classes } = useStyles();
+  const { user } = useAuthContext();
   const [updatePasswordView, setUpdatePasswordView] = useState(false);
+
+  const [studioEmailValue, setStudioEmailValue] = useState(user.email);
+  const [studioNameValue, setStudioNameValue] = useState(studioName);
+  const [studioCityValue, setStudioCityValue] = useState(studioCity);
+  const [studioPhoneNumberValue, setStudioPhoneNumberValue] =
+    useState(studioPhoneNumber);
+  const [studioWhatsAppNumberValue, setStudioWhatsAppNumberValue] =
+    useState(studioWhatsAppNumber);
+  const [studioAddressValue, setStudioAddressValue] = useState(studioAddress);
+  const [studioPincodeValue, setStudioPincodeValue] = useState(studioPincode);
+  const [studioAboutValue, setStudioAboutValue] = useState(studioAbout);
+  const [studioDailyRateValue, setStudioDailyRateValue] =
+    useState(studioDailyRate);
 
   return (
     <>
@@ -69,26 +102,33 @@ function StudioEditProfile() {
               onClick={() => {
                 setUpdatePasswordView(true);
               }}
+              disabled
             >
               Update Password
             </Button>
           </Box>
           <Stack>
             <Grid container xs={12} spacing={2} sx={{ padding: 2 }}>
-              <Grid item xs={6}>
+              <Grid item xs={8}>
                 <TextField
                   id="outlined-basic"
                   label="Studio Name"
                   variant="outlined"
                   className={classes.basicDetailsTextInputField}
+                  value={studioNameValue}
                 />
               </Grid>
-              <Grid container item xs={6} spacing={3}>
+              <Button variant="contained" className={classes.editProfileButton}>
+                Update Studio Name
+              </Button>
+              <Divider />
+              <Grid container item xs={8} spacing={3}>
                 <Grid item xs={4}>
                   <TextField
                     id="outlined-basic"
-                    label="Calling Number"
+                    label="Phone Number"
                     variant="outlined"
+                    value={studioPhoneNumberValue}
                   />
                 </Grid>
                 <Grid item xs={4}>
@@ -96,10 +136,18 @@ function StudioEditProfile() {
                     id="outlined-basic"
                     label="WhatsApp Number"
                     variant="outlined"
+                    value={studioWhatsAppNumberValue}
                   />
                 </Grid>
+                <Button
+                  variant="contained"
+                  className={classes.editProfileButton}
+                >
+                  Update Contact Details
+                </Button>
               </Grid>
             </Grid>
+            <Divider />
             <Grid container xs={12} sx={{ padding: 2 }}>
               <Grid item xs={6}>
                 <TextField
@@ -109,6 +157,7 @@ function StudioEditProfile() {
                   multiline
                   rows={4}
                   className={classes.addressTextInputField}
+                  value={studioAddressValue}
                 />
               </Grid>
               <Grid container item xs={6} spacing={3}>
@@ -117,6 +166,7 @@ function StudioEditProfile() {
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
+                    value={studioCityValue}
                     options={cities.map((city) => city.cityName)}
                     renderInput={(params) => (
                       <TextField
@@ -135,13 +185,14 @@ function StudioEditProfile() {
                     id="outlined-basic"
                     label="Pin Code"
                     variant="outlined"
+                    value={studioPincodeValue}
                   />
                 </Grid>
               </Grid>{" "}
             </Grid>
             <Box className={classes.editProfileButtonWrapper}>
               <Button variant="contained" className={classes.editProfileButton}>
-                Update Basic Details
+                Update Location Details
               </Button>
             </Box>
           </Stack>
@@ -153,6 +204,7 @@ function StudioEditProfile() {
                 label="Email Id"
                 variant="outlined"
                 className={classes.emailIdTextField}
+                value={studioEmailValue}
               />
             </Grid>
 
@@ -167,24 +219,15 @@ function StudioEditProfile() {
 
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              category(s)
-            </Grid>
-            <Grid item xs={6}>
               <TextField
                 id="outlined-basic"
-                label="Service Location(s)"
+                label="Daily Rate"
                 variant="outlined"
-                className={classes.basicDetailsTextInputField}
+                className={classes.addressTextInputField}
+                value={studioDailyRateValue}
               />
             </Grid>
-            <Grid item xs={6}>
-              <TextField
-                id="outlined-basic"
-                label="Language(s) Known"
-                variant="outlined"
-                className={classes.basicDetailsTextInputField}
-              />
-            </Grid>
+
             <Grid item xs={12} sx={{ padding: 2 }}>
               <TextField
                 id="outlined-basic"
@@ -193,7 +236,20 @@ function StudioEditProfile() {
                 multiline
                 rows={4}
                 className={classes.addressTextInputField}
+                value={studioAboutValue}
               />
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              className={classes.editProfileDetailsButtonWrapper}
+            >
+              <Button
+                variant="contained"
+                className={classes.editProfileDetailsButton}
+              >
+                Update Profile Details
+              </Button>
             </Grid>
           </Grid>
         </>

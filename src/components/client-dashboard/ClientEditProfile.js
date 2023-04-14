@@ -339,6 +339,7 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
             type="password"
             autoComplete="current-password"
             className={classes.passwordField}
+            disabled
           />
         </Grid>
         <Grid item xs={12}>
@@ -348,6 +349,7 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
             type="password"
             autoComplete="current-password"
             className={classes.passwordField}
+            disabled
           />
         </Grid>
         <Grid item xs={12}>
@@ -357,12 +359,17 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
             type="password"
             autoComplete="current-password"
             className={classes.passwordField}
+            disabled
           />
         </Grid>
 
         <Grid item xs={12}>
           {" "}
-          <Button variant="contained" className={classes.updatePasswordButton}>
+          <Button
+            variant="contained"
+            className={classes.updatePasswordButton}
+            disabled
+          >
             Update Password
           </Button>
         </Grid>

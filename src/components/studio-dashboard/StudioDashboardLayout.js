@@ -141,6 +141,7 @@ export default function StudioDashboardLayout({
   studioPincode,
   studioAbout,
   studioCategory,
+  studioDailyRate,
   studioProfilePicture,
 }) {
   const [open, setOpen] = useState(false);
@@ -296,7 +297,19 @@ export default function StudioDashboardLayout({
 
             createNewAlbum: <CreateNewAlbum />,
             viewAlbums: <ViewAlbums />,
-            editProfile: <StudioEditProfile />,
+            editProfile: (
+              <StudioEditProfile
+                studio={studio}
+                studioName={studioName}
+                studioCity={studioCity}
+                studioPhoneNumber={studioPhoneNumber}
+                studioWhatsAppNumber={studioWhatsAppNumber}
+                studioAddress={studioAddress}
+                studioPincode={studioPincode}
+                studioAbout={studioAbout}
+                studioDailyRate={studioDailyRate}
+              />
+            ),
             viewProfile: (
               <StudioDashboardProfile
                 studio={studio}
@@ -308,6 +321,7 @@ export default function StudioDashboardLayout({
                 studioPincode={studioPincode}
                 studioAbout={studioAbout}
                 studioCategory={studioCategory}
+                studioDailyRate={studioDailyRate}
                 studioProfilePicture={studioProfilePicture}
               />
             ),
