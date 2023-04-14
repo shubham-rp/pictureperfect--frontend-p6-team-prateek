@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { cities } from "../../../assets/mock-data/cities";
 import { useAuthContext } from "../../../hooks/useAuthContext";
+import ErrorTwoToneIcon from "@mui/icons-material/ErrorTwoTone";
+
+import axios from "axios";
+import toast from "react-hot-toast";
 
 import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Box,
   Divider,
   Toolbar,
@@ -87,6 +96,122 @@ function StudioEditProfile({
   const [studioDailyRateValue, setStudioDailyRateValue] =
     useState(studioDailyRate);
 
+  const [isUpdateEmailDisabled, setIsUpdateEmailDisabled] = useState(true);
+  const [emailOpen, setEmailOpen] = useState(false);
+  const [isEmailLoading, setIsEmailLoading] = useState(false);
+
+  const [isUpdateNameDisabled, setIsUpdateNameDisabled] = useState(true);
+  const [studioNameOpen, setStudioNameOpen] = useState(false);
+  const [isStudioNameLoading, setIsStudioNameLoading] = useState(false);
+
+  const handleEditStudioName = (e) => {
+    e.preventDefault();
+
+    if (e.target.value !== "" && e.target.value !== studioName) {
+      setIsUpdateNameDisabled(false);
+    }
+
+    if (e.target.value === "" || e.target.value === studioName) {
+      setIsUpdateNameDisabled(true);
+    }
+
+    setStudioNameValue(e.target.value);
+  };
+
+  const handleUpdateStudioName = (e) => {
+    e.preventDefault();
+    setStudioNameOpen(false);
+    setIsStudioNameLoading(true);
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/studios/profile/name`,
+        {
+          studioNameValue,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        toast.success("Studio Name Successfully updated!");
+        console.log(response.data);
+        setIsEmailLoading(false);
+      })
+      .catch((error) => {
+        toast.error("Studio Name not updated");
+
+        setIsEmailLoading(false);
+        console.error(error);
+      });
+
+    console.log(studioEmailValue);
+  };
+
+  const handleStudioNameOpen = () => {
+    setStudioNameOpen(true);
+  };
+
+  const handleStudioNameClose = () => {
+    setStudioNameOpen(false);
+  };
+
+  const handleEditStudioEmail = (e) => {
+    e.preventDefault();
+
+    if (e.target.value !== "" && e.target.value !== user.email) {
+      setIsUpdateEmailDisabled(false);
+    }
+
+    if (e.target.value === "" || e.target.value === user.email) {
+      setIsUpdateEmailDisabled(true);
+    }
+
+    setStudioEmailValue(e.target.value);
+  };
+
+  const handleUpdateStudioEmail = (e) => {
+    e.preventDefault();
+    setEmailOpen(false);
+    setIsEmailLoading(true);
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/studios/profile/email`,
+        {
+          studioEmailValue,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        toast.success("Email Successfully updated!");
+        console.log(response.data);
+        setIsEmailLoading(false);
+      })
+      .catch((error) => {
+        toast.error("Email not updated");
+
+        setIsEmailLoading(false);
+        console.error(error);
+      });
+
+    console.log(studioEmailValue);
+  };
+
+  const handleEmailOpen = () => {
+    setEmailOpen(true);
+  };
+
+  const handleEmailClose = () => {
+    setEmailOpen(false);
+  };
+
   return (
     <>
       {updatePasswordView ? (
@@ -116,11 +241,41 @@ function StudioEditProfile({
                   variant="outlined"
                   className={classes.basicDetailsTextInputField}
                   value={studioNameValue}
+                  onChange={handleEditStudioName}
                 />
               </Grid>
-              <Button variant="contained" className={classes.editProfileButton}>
+              <Button
+                variant="contained"
+                className={classes.editProfileButton}
+                onClick={handleStudioNameOpen}
+                disabled={isUpdateNameDisabled}
+              >
                 Update Studio Name
               </Button>
+              <Dialog
+                open={studioNameOpen}
+                onClose={handleStudioNameClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle
+                  id="alert-dialog-title"
+                  className={classes.dialogAlertHeader}
+                >
+                  <ErrorTwoToneIcon />
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Are you sure you want to update your Studio name ?
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleStudioNameClose}>No</Button>
+                  <Button onClick={handleUpdateStudioName} autoFocus>
+                    Yes
+                  </Button>
+                </DialogActions>
+              </Dialog>
               <Divider />
               <Grid container item xs={8} spacing={3}>
                 <Grid item xs={4}>
@@ -205,14 +360,44 @@ function StudioEditProfile({
                 variant="outlined"
                 className={classes.emailIdTextField}
                 value={studioEmailValue}
+                onChange={handleEditStudioEmail}
               />
             </Grid>
 
             <Grid item xs={7}>
               {" "}
-              <Button variant="contained" className={classes.editProfileButton}>
+              <Button
+                variant="contained"
+                className={classes.editProfileButton}
+                onClick={handleEmailOpen}
+                disabled={isUpdateEmailDisabled}
+              >
                 Verify & Update Email
               </Button>
+              <Dialog
+                open={emailOpen}
+                onClose={handleEmailClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle
+                  id="alert-dialog-title"
+                  className={classes.dialogAlertHeader}
+                >
+                  <ErrorTwoToneIcon />
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Are you sure you want to update your email ?
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleEmailClose}>No</Button>
+                  <Button onClick={handleUpdateStudioEmail} autoFocus>
+                    Yes
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </Grid>
           </Grid>
           <Divider />

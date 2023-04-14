@@ -65,7 +65,7 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
   const [isUpdateEmailDisabled, setIsUpdateEmailDisabled] = useState(true);
 
   const [emailOpen, setEmailOpen] = useState(false);
-  //const [passwordOpen, setPasswordOpen] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailLoading, setIsEmailLoading] = useState(false);
 
