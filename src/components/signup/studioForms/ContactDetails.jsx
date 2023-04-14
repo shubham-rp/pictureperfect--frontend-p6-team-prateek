@@ -33,9 +33,10 @@ const useStyles = makeStyles()((theme) => {
     },
 
     nameTextField: {
-      width: 240,
-      marginRight: 12,
-      marginLeft: 12,
+      width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
     },
     signInButton: {
       width: 150,
@@ -44,7 +45,10 @@ const useStyles = makeStyles()((theme) => {
       borderRadius: 24,
     },
     categoryWidth: {
-      width: 550,
+      width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
     },
   };
 });
@@ -61,7 +65,7 @@ export default function ContactDetails(props) {
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "70ch" },
+          "& .MuiTextField-root": { m: 1 },
         }}
         noValidate
         autoComplete="off"

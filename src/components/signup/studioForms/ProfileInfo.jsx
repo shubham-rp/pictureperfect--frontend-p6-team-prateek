@@ -42,11 +42,15 @@ const useStyles = makeStyles()((theme) => {
     },
     loginTextField: {
       width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
     },
     nameTextField: {
-      width: 240,
-      marginRight: 12,
-      marginLeft: 12,
+      width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
     },
     signInButton: {
       width: 150,
@@ -72,7 +76,10 @@ const useStyles = makeStyles()((theme) => {
     accountIcon: { width: 120, height: 48 },
     drawer: { display: "flex", flexDirection: "column", alignItems: "center" },
     categoryWidth: {
-      width: 700,
+      width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
     },
     style: {
       position: "absolute",
@@ -171,7 +178,7 @@ export default function ProfileInfo(props) {
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "70ch" },
+          "& .MuiTextField-root": { m: 1 },
         }}
         noValidate
         autoComplete="off"
@@ -209,7 +216,7 @@ export default function ProfileInfo(props) {
             <TextField
               id="studioDailyRate"
               value={props.values.studioDailyRate}
-              className={classes.nameTextField}
+              className={classes.loginTextField}
               onChange={props.handler}
               label="Daily Rate*"
               type="number"
@@ -287,6 +294,7 @@ export default function ProfileInfo(props) {
           </div> */}
           <FormControl>
             <TextField
+              className={classes.loginTextField}
               id="studioAbout"
               value={props.values.studioAbout}
               label="Write a few words about your Photo Studio*"

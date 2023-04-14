@@ -21,7 +21,7 @@ function StudioDashboard() {
         }
       );
       const userData = response.data;
-      console.log(userData);
+
       setStudioData(userData);
     };
 

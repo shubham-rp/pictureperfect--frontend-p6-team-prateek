@@ -359,7 +359,7 @@ const studioDrawerItems = [
     isDivider: false,
   },
   {
-    componentName: "View Profile",
+    componentName: "Public Profile",
     componentIcon: <AccountCircleIcon />,
     componentValue: "viewProfile",
     isDivider: false,

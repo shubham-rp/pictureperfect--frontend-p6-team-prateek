@@ -127,16 +127,7 @@ function App() {
             path="/booking-flow"
             element={user ? <BookingFlow /> : <Navigate to="/login" />}
           ></Route>
-          <Route
-            exact
-            path="/client-dashboard"
-            element={<ClientDashboard />}
-          ></Route>
-          <Route
-            exact
-            path="/studio-dashboard"
-            element={<StudioDashboard />}
-          ></Route>
+
           <Route
             exact
             path="/register-studio-confirmation"

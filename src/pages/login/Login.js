@@ -36,6 +36,9 @@ const useStyles = makeStyles()((theme) => {
     },
     loginImageContainer: {
       height: "100vh",
+      "@media (max-width: 1440px)": {
+        display: "none",
+      },
     },
     loginImage: {
       marginRight: "auto",
@@ -44,6 +47,9 @@ const useStyles = makeStyles()((theme) => {
     },
     loginTextField: {
       width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
     },
     signInButton: {
       width: 128,
@@ -54,6 +60,9 @@ const useStyles = makeStyles()((theme) => {
     forgotPasswordText: {
       textAlign: "right",
       width: "100%",
+      "@media (max-width: 720px)": {
+        textAlign: "center",
+      },
     },
     forgotPasswordLink: {
       color: "grey",

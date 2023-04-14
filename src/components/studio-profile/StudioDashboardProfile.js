@@ -232,9 +232,6 @@ function StudioDashboardProfile({
                 className={classes.studioButtons}
                 variant="outlined"
                 color="error"
-                onClick={() => {
-                  console.log("Hey");
-                }}
               >
                 <RotateLeftIcon />
                 Go Back

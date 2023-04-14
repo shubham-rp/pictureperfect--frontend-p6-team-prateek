@@ -200,8 +200,6 @@ function StudioEditProfile({
         setIsEmailLoading(false);
         console.error(error);
       });
-
-    console.log(studioEmailValue);
   };
 
   const handleEmailOpen = () => {

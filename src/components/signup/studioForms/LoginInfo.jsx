@@ -29,17 +29,12 @@ const useStyles = makeStyles()((theme) => {
       justifyContent: "center",
       alignItems: "center",
     },
-    loginImageContainer: {
-      height: "100vh",
-    },
-    loginImage: {
-      marginRight: "auto",
-      marginLeft: "auto",
-      height: "98%",
-    },
 
     nameTextField: {
-      width: 350,
+      width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
     },
     signInButton: {
       width: 150,
@@ -74,7 +69,7 @@ export default function LoginInfo(props) {
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "70ch" },
+          "& .MuiTextField-root": { m: 1 },
         }}
       >
         <Stack spacing={3} className={classes.loginItems}>

@@ -34,7 +34,7 @@ function ClientDashboard() {
         }
       );
       const userData = await response.json();
-      console.log(userData);
+
       if (response.ok) {
         setFirstName(userData.firstName);
         setLastName(userData.lastName);

@@ -42,7 +42,7 @@ const useStyles = makeStyles()((theme) => {
       borderRadius: 100,
       "@media (max-width: 1024px)": {
         height: 32,
-        fontSize: 18,
+        fontSize: 16,
         margin: 8,
       },
     },

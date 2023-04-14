@@ -86,6 +86,9 @@ const useStyles = makeStyles()((theme) => {
     },
     mainBox: {
       marginLeft: 300,
+      "@media (max-width: 1280px)": {
+        marginLeft: 0,
+      },
     },
     logoImage: {
       marginTop: 8,
@@ -321,7 +324,7 @@ export default function BookingFlow() {
 
       ...bookingFormData,
     };
-    console.log(finalBookingData);
+
     setIsLoading(true);
     try {
       // const response = await fetch("http://localhost:8080/create-user", {
@@ -555,7 +558,6 @@ export default function BookingFlow() {
     // }
   };
   const handleFromDate = (e) => {
-    console.log(e);
     setBookingFormData((prev) => {
       return {
         ...prev,
@@ -564,7 +566,6 @@ export default function BookingFlow() {
     });
   };
   const handleBookingDate = (e) => {
-    console.log(e);
     setBookingFormData((prev) => {
       return {
         ...prev,
@@ -573,7 +574,6 @@ export default function BookingFlow() {
     });
   };
   const handleToDate = (e) => {
-    console.log(e);
     setBookingFormData((prev) => {
       return {
         ...prev,

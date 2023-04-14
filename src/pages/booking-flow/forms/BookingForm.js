@@ -31,6 +31,7 @@ const useStyles = makeStyles()((theme) => {
     },
 
     loginItems: {
+      display: "flex",
       justifyContent: "center",
       alignItems: "center",
     },
@@ -55,12 +56,13 @@ const useStyles = makeStyles()((theme) => {
       height: 48,
       fontSize: 11,
       borderRadius: 24,
+      margin: 64,
     },
     signUpHeading: {
       color: theme.palette.primary.main,
     },
     dropDown: {
-      width: 405,
+      width: 400,
     },
     // mainBox: {
     //   marginTop: 30,
@@ -74,10 +76,15 @@ const useStyles = makeStyles()((theme) => {
     accountIcon: { width: 120, height: 48 },
     drawer: { display: "flex", flexDirection: "column", alignItems: "center" },
     address: {
-      width: 250,
+      width: 240,
     },
     pinCode: {
       width: 250,
+    },
+    gridWrapper: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
   };
 });
@@ -98,8 +105,8 @@ export default function BookingFlow(props) {
           <Box className={classes.mainBox}>
             <Stack spacing={0} className={classes.loginItems}>
               <Grid>
-                <Grid container xs={12}>
-                  <Grid item md={12} lg={6}>
+                <Grid container xs={12} className={classes.loginItems}>
+                  <Grid item md={12} lg={6} className={classes.loginItems}>
                     <TextField
                       className={classes.nameTextField}
                       label="Your Name*"
@@ -109,7 +116,21 @@ export default function BookingFlow(props) {
                       disabled
                     />
                   </Grid>
-                  <Grid item md={12} lg={6}>
+                  <Grid item md={12} lg={6} className={classes.loginItems}>
+                    <TextField
+                      className={classes.nameTextField}
+                      label="Email ID*"
+                      variant="outlined"
+                      id="userEmail"
+                      value={props.values.userEmail}
+                      disabled
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid>
+                <Grid container xs={12} className={classes.loginItems}>
+                  <Grid item md={12} lg={6} className={classes.loginItems}>
                     <FormControl>
                       <TextField
                         className={classes.nameTextField}
@@ -136,21 +157,7 @@ export default function BookingFlow(props) {
                       )}
                     </FormControl>
                   </Grid>
-                </Grid>
-              </Grid>
-              <Grid>
-                <Grid container xs={12}>
-                  <Grid item md={12} lg={6}>
-                    <TextField
-                      className={classes.nameTextField}
-                      label="Email ID*"
-                      variant="outlined"
-                      id="userEmail"
-                      value={props.values.userEmail}
-                      disabled
-                    />
-                  </Grid>
-                  <Grid item md={12} lg={6}>
+                  <Grid item md={12} lg={6} className={classes.loginItems}>
                     <FormControl>
                       <TextField
                         className={classes.nameTextField}
@@ -179,111 +186,136 @@ export default function BookingFlow(props) {
                   </Grid>
                 </Grid>
               </Grid>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker"]}>
-                  <DatePicker
-                    label="From Date"
-                    value={dayjs(props.values.fromDate)}
-                    defaultValue={new Date()}
-                    disablePast={true}
-                    onChange={props.fromDateHandler}
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
-
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker"]}>
-                  <DatePicker
-                    label="To Date"
-                    value={dayjs(props.values.toDate)}
-                    // defaultValue={}
-                    disablePast={true}
-                    shouldDisableDate={(day) => {
-                      // console.log("fromDate => ", props.values.fromDate);
-                      // console.log("day => ", day);
-                      return day < props.values.fromDate;
-                    }}
-                    onChange={props.toDateHandler}
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
-
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker"]}>
-                  <DatePicker
-                    label="Visit Date"
-                    value={dayjs(props.values.bookingDate)}
-                    defaultValue={new Date()}
-                    disablePast={true}
-                    onChange={props.bookingDateHandler}
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
               <Grid>
-                <div>
-                  {!!props.errorMessage.userSelectCategory && (
-                    <span style={{ color: "red" }}>
-                      {props.errorMessage.userSelectCategory}
-                    </span>
-                  )}
-                </div>
-                <FormControl className={classes.dropDown}>
-                  <InputLabel id="demo-simple-select-label">
-                    Select Category*
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    name="userSelectCategory"
-                    label="Category*"
-                    value={props.values.userSelectCategory}
-                    onChange={props.handler}
+                <Grid container xs={12} className={classes.loginItems}>
+                  <Grid item md={12} lg={6} className={classes.loginItems}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={["DatePicker"]}>
+                        <DatePicker
+                          label="From Date"
+                          value={dayjs(props.values.fromDate)}
+                          defaultValue={new Date()}
+                          disablePast={true}
+                          onChange={props.fromDateHandler}
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Grid>
+                  <Grid item md={12} lg={6} className={classes.loginItems}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={["DatePicker"]}>
+                        <DatePicker
+                          label="To Date"
+                          value={dayjs(props.values.toDate)}
+                          // defaultValue={}
+                          disablePast={true}
+                          shouldDisableDate={(day) => {
+                            return day < props.values.fromDate;
+                          }}
+                          onChange={props.toDateHandler}
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid>
+                <Grid container xs={12} className={classes.loginItems}>
+                  <Grid item md={12} lg={6} className={classes.loginItems}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={["DatePicker"]}>
+                        <DatePicker
+                          label="Visit Date"
+                          value={dayjs(props.values.bookingDate)}
+                          defaultValue={new Date()}
+                          disablePast={true}
+                          onChange={props.bookingDateHandler}
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Grid>
+                  <Grid
+                    item
+                    md={12}
+                    lg={6}
+                    sx={{ paddingTop: 2, paddingLeft: 1 }}
+                    className={classes.loginItems}
                   >
-                    {props.studioCategories.map((category) => {
-                      return <MenuItem value={category}>{category}</MenuItem>;
-                    })}
-                  </Select>
-                </FormControl>
+                    <div>
+                      {!!props.errorMessage.userSelectCategory && (
+                        <span style={{ color: "red" }}>
+                          {props.errorMessage.userSelectCategory}
+                        </span>
+                      )}
+                    </div>
+
+                    <FormControl className={classes.dropDown}>
+                      <InputLabel id="demo-simple-select-label">
+                        Category*
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        name="userSelectCategory"
+                        label="Category*"
+                        value={props.values.userSelectCategory}
+                        onChange={props.handler}
+                      >
+                        {props.studioCategories.map((category) => {
+                          return (
+                            <MenuItem value={category}>{category}</MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                </Grid>
               </Grid>
               <Grid>
-                <FormControl>
-                  <TextField
-                    className={classes.address}
-                    label="Address*"
-                    multiline
-                    rows={4}
-                    defaultValue=""
-                    id="userAddress"
-                    value={props.values.userAddress}
-                    onChange={props.handler}
-                    error={props.errorMessage.userAddress}
-                  />
-                  {props.errorMessage.userAddress && (
-                    <FormHelperText error>
-                      {props.errorMessage.userAddress}
-                    </FormHelperText>
-                  )}
-                </FormControl>
+                <Grid container xs={12} className={classes.loginItems}>
+                  <Grid item md={12} lg={6} className={classes.loginItems}>
+                    <FormControl>
+                      <TextField
+                        className={classes.address}
+                        label="Address*"
+                        multiline
+                        rows={4}
+                        defaultValue=""
+                        id="userAddress"
+                        value={props.values.userAddress}
+                        onChange={props.handler}
+                        error={props.errorMessage.userAddress}
+                      />
+                      {props.errorMessage.userAddress && (
+                        <FormHelperText error>
+                          {props.errorMessage.userAddress}
+                        </FormHelperText>
+                      )}
+                    </FormControl>
+                  </Grid>
+                  <Grid item md={12} lg={6} className={classes.loginItems}>
+                    <FormControl>
+                      <TextField
+                        className={classes.pinCode}
+                        label="Pin Code*"
+                        variant="outlined"
+                        type="number"
+                        id="userPinCode"
+                        value={props.values.userPinCode}
+                        onChange={props.handler}
+                        inputProps={{ maxLength: 6 }}
+                        error={props.errorMessage.userPinCode}
+                      />
+                      {props.errorMessage.userPinCode && (
+                        <FormHelperText error>
+                          {props.errorMessage.userPinCode}
+                        </FormHelperText>
+                      )}
+                    </FormControl>
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid>
-                <FormControl>
-                  <TextField
-                    className={classes.pinCode}
-                    label="Pin Code*"
-                    variant="outlined"
-                    type="number"
-                    id="userPinCode"
-                    value={props.values.userPinCode}
-                    onChange={props.handler}
-                    inputProps={{ maxLength: 6 }}
-                    error={props.errorMessage.userPinCode}
-                  />
-                  {props.errorMessage.userPinCode && (
-                    <FormHelperText error>
-                      {props.errorMessage.userPinCode}
-                    </FormHelperText>
-                  )}
-                </FormControl>
-              </Grid>
+
               <Button
                 variant="contained"
                 className={classes.signInButton}

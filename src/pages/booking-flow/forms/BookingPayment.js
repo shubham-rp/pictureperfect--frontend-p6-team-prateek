@@ -2,15 +2,34 @@ import { useState, useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import axios from "axios";
 import { makeStyles } from "tss-react/mui";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 
 const useStyles = makeStyles()((theme) => {
   return {
-    signInButton: {
+    paymentButton: {
       width: 175,
       height: 48,
-      fontSize: 11,
+      fontSize: 14,
       borderRadius: 24,
+    },
+    paymentButtonWrapper: {
+      textAlign: "center",
+    },
+
+    paymentDetailsBox: {
+      marginTop: 50,
+      padding: 50,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+
+    paymentDetailsText: {
+      fontSize: 18,
+      textAlign: "center",
+    },
+    paymentDetailsHeader: {
+      fontWeight: "bold",
     },
   };
 });
@@ -30,20 +49,43 @@ export default function BookingFlow({
   };
 
   return (
-    <Box>
+    <>
       <CssBaseline />
-      Go back on booking payment
-      <Typography>Studio Daily Rate: ₹{studioDailyRate}</Typography>
-      <Typography>Number of Days: {numberOfDays}</Typography>
-      <Typography>Total Amount: ₹{totalAmount}</Typography>
-      <Button
-        variant="contained"
-        className={classes.signInButton}
-        type="submit"
-        onClick={handleProccedToPayments}
+      <Box
+        className={classes.paymentDetailsBox}
+        border={2}
+        sx={{ borderColor: "primary.main" }}
+        borderRadius={16}
       >
-        Pay
-      </Button>
-    </Box>
+        <Stack spacing={4}>
+          <Typography className={classes.paymentDetailsText}>
+            <span className={classes.paymentDetailsHeader}>
+              Studio Daily Rate:
+            </span>{" "}
+            ₹{studioDailyRate}
+          </Typography>
+          <Typography className={classes.paymentDetailsText}>
+            <span className={classes.paymentDetailsHeader}>
+              Number of Days:
+            </span>{" "}
+            {numberOfDays}
+          </Typography>
+          <Typography className={classes.paymentDetailsText}>
+            <span className={classes.paymentDetailsHeader}>Total Amount:</span>{" "}
+            ₹{totalAmount}
+          </Typography>
+          <Box className={classes.paymentButtonWrapper}>
+            <Button
+              variant="contained"
+              className={classes.paymentButton}
+              type="submit"
+              onClick={handleProccedToPayments}
+            >
+              Proceed To Pay
+            </Button>
+          </Box>
+        </Stack>
+      </Box>
+    </>
   );
 }

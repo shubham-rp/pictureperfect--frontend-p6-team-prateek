@@ -28,7 +28,6 @@ export const useLogin = () => {
       setError(json.error);
     }
     if (response.ok) {
-      console.log(json);
       localStorage.setItem("user", JSON.stringify(json));
 
       // update the auth context

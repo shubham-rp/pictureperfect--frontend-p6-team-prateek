@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
+import { Box } from "@mui/material";
 
 import StepLabel from "@mui/material/StepLabel";
 
@@ -49,6 +50,9 @@ const useStyles = makeStyles()((theme) => {
 
     loginImageContainer: {
       height: "100vh",
+      "@media (max-width: 1440px)": {
+        display: "none",
+      },
     },
     loginImage: {
       marginRight: "auto",
@@ -57,6 +61,9 @@ const useStyles = makeStyles()((theme) => {
     },
     loginTextField: {
       width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
     },
     signInButton: {
       width: 175,
@@ -743,7 +750,7 @@ export default function StudioSignUp({ cities, categories }) {
             <div className={classes.error}>{registerStudioError}</div>
           )}
 
-          <Item>{renderForm()}</Item>
+          <Box>{renderForm()}</Box>
         </Stack>
       </Grid>
     </Grid>

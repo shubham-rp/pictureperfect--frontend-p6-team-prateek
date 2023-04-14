@@ -34,6 +34,9 @@ const useStyles = makeStyles()((theme) => {
 
     contactUsTextField: {
       width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
     },
 
     submitButton: {
@@ -59,6 +62,9 @@ const useStyles = makeStyles()((theme) => {
       alignItems: "center",
       flexDirection: "column",
       padding: 100,
+      "@media (max-width: 1440px)": {
+        display: "none",
+      },
     },
     contactUsHeading: {
       padding: 20,
@@ -96,15 +102,17 @@ function ContactUs() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(email);
   };
   return (
     <>
       <Box>
         <AppBar position="static" className={classes.appBar} elevation={0}>
           <Toolbar className={classes.toolbar}>
-            <img className={classes.logoImage} src={croppedppLogo} />
+            <img
+              className={classes.logoImage}
+              src={croppedppLogo}
+              alt="person holding camera"
+            />
             <div className={classes.buttonGroup}>
               <Link to="/" className={classes.link}>
                 <Button variant="contained" className={classes.appBarButton}>

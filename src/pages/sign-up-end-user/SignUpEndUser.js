@@ -36,6 +36,9 @@ const useStyles = makeStyles()((theme) => {
     },
     loginImageContainer: {
       height: "99vh",
+      "@media (max-width: 1440px)": {
+        display: "none",
+      },
     },
     loginImage: {
       marginRight: "auto",
@@ -44,11 +47,25 @@ const useStyles = makeStyles()((theme) => {
     },
     loginTextField: {
       width: 507,
+      "@media (max-width: 720px)": {
+        width: 400,
+      },
+    },
+    gridWrapper: {
+      display: "flex",
+      justifyContent: "space-between",
+      "@media (max-width: 720px)": {
+        flexDirection: "column",
+      },
     },
     nameTextField: {
       width: 240,
       marginRight: 12,
       marginLeft: 12,
+      "@media (max-width: 720px)": {
+        width: 400,
+        marginBottom: 16,
+      },
     },
     signInButton: {
       width: 128,
@@ -161,7 +178,7 @@ function SignUpEndUser() {
                 value={email}
                 {...(errors.email && { error: true, helperText: errors.email })}
               />
-              <Grid>
+              <Grid className={classes.gridWrapper}>
                 <TextField
                   className={classes.nameTextField}
                   label="First Name"
