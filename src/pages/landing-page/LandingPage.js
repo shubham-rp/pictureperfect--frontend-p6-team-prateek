@@ -277,7 +277,7 @@ const itemData = [
     title: "Special Occasion",
   },
   {
-    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/fashion-and-portfolio.jpeg",
+    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/fashion.png",
     title: "Fashion & Portfolio",
   },
   {
