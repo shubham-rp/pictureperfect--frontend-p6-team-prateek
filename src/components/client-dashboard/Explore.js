@@ -8,7 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { Box, Grid, Paper, Stack } from "@mui/material";
+import { Grid, Paper, Stack } from "@mui/material";
 import StudioCard from "./StudioCard";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -18,8 +18,8 @@ import { CircularProgress } from "@mui/material";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { styled } from "@mui/material/styles";
 
-import { categories } from "../../assets/mock-data/categories";
-import { cities } from "../../assets/mock-data/cities";
+//import { categories } from "../../assets/mock-data/categories";
+//import { cities } from "../../assets/mock-data/cities";
 //import { studios } from "../../assets/mock-data/studios";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -113,7 +113,7 @@ const useStyles = makeStyles()((theme) => {
     },
     grid: {
       display: "flex",
-      // flexWrap: "wrap",
+      flexWrap: "wrap",
     },
   };
 });
@@ -133,8 +133,11 @@ const Explore = () => {
   });
   const [searchCity, setSearchCity] = useState("All");
   const [searchCategory, setSearchCategory] = useState("All");
-  const [isLoading, setIsloading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [studios, setStudios] = useState([]);
+
+  const [categories, setCategories] = useState([]);
+  const [cities, setCities] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("city", JSON.stringify(selectedCity));
@@ -143,7 +146,7 @@ const Explore = () => {
 
   useEffect(() => {
     const fetchAllStudios = async () => {
-      const response = await axios
+      await axios
         .get(`${process.env.REACT_APP_BACKEND_API_URL}/api/studios/all`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -152,12 +155,54 @@ const Explore = () => {
         .then((response) => {
           console.log(response.data);
           setStudios(response.data);
-          setIsloading(false);
+          setIsLoading(false);
         });
     };
-
+    setIsLoading(true);
     fetchAllStudios();
-  }, [user, setIsloading, setStudios]);
+  }, [user, setIsLoading, setStudios]);
+
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/api/categories/all`
+        );
+
+        setCategories([
+          { categoryName: "All", categoryValue: "All" },
+          ...response.data,
+        ]);
+
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        console.log(error);
+      }
+    };
+    setIsLoading(true);
+    fetchCategoryData();
+  }, [user, setIsLoading, setCategories]);
+
+  useEffect(() => {
+    const fetchCityData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/api/cities/all`
+        );
+
+        setCities([{ cityName: "All" }, ...response.data]);
+
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        console.log(error);
+      }
+    };
+
+    setIsLoading(true);
+    fetchCityData();
+  }, [user, setIsLoading, setCities]);
 
   const handleCategoryRadioChange = (event) => {
     setSelectedCategory(event.target.value);
