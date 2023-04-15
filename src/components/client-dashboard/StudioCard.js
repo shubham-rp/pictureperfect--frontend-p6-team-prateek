@@ -76,6 +76,7 @@ export default function StudioCard({
   studioCategory,
   studioProfilePicture,
   studioDailyRate,
+  albums,
 }) {
   const { classes } = useStyles();
   const { setComponentToBeDisplayed } = useContext(StudioProfileDisplayContext);
@@ -144,6 +145,7 @@ export default function StudioCard({
                 studioCategory,
                 studioProfilePicture,
                 studioDailyRate,
+                albums,
               });
             }}
           >
@@ -165,6 +167,7 @@ export default function StudioCard({
               studioCategory,
               studioProfilePicture,
               studioDailyRate,
+              albums,
             }}
           >
             <Button variant="contained" className={classes.button}>

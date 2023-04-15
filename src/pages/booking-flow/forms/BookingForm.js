@@ -192,8 +192,9 @@ export default function BookingFlow(props) {
                         <DatePicker
                           label="From Date"
                           value={dayjs(props.values.fromDate)}
-                          defaultValue={new Date()}
+                          format="DD/MM/YYYY"
                           disablePast={true}
+                          minDate={dayjs(props.values.fromDate)}
                           onChange={props.fromDateHandler}
                         />
                       </DemoContainer>
@@ -205,10 +206,12 @@ export default function BookingFlow(props) {
                         <DatePicker
                           label="To Date"
                           value={dayjs(props.values.toDate)}
+                          format="DD/MM/YYYY"
                           disablePast={true}
-                          shouldDisableDate={(day) => {
-                            return day < props.values.fromDate;
-                          }}
+                          minDate={dayjs(props.values.fromDate)}
+                          // shouldDisableDate={(day) => {
+                          //   return day < props.values.fromDate;
+                          // }}
                           onChange={props.toDateHandler}
                         />
                       </DemoContainer>
@@ -224,7 +227,10 @@ export default function BookingFlow(props) {
                       <DemoContainer components={["DatePicker"]}>
                         <DatePicker
                           label="Visit Date"
+                          format="DD/MM/YYYY"
                           value={dayjs(props.values.bookingDate)}
+                          minDate={dayjs(props.values.bookingDate)}
+                          maxDate={dayjs(props.values.fromDate)}
                           defaultValue={new Date()}
                           disablePast={true}
                           onChange={props.bookingDateHandler}
@@ -316,7 +322,7 @@ export default function BookingFlow(props) {
               <Button
                 variant="contained"
                 className={classes.signInButton}
-                type="submit"
+                //type="submit"
                 onClick={() => {
                   props.handlePaymentDetails();
                   props.handleCurrentForm("bookingPayment");

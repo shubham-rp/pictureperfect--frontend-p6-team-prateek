@@ -235,6 +235,9 @@ export default function BookingFlow() {
 
   const [flag, setFlag] = useState(true);
   const [error, setError] = useState({});
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
   const [bookingFormData, setBookingFormData] = useState({
     userName: "",
     userEmail: "",
@@ -243,9 +246,9 @@ export default function BookingFlow() {
     userSelectCategory: "",
     userAddress: "",
     userPinCode: "",
-    bookingDate: new Date(),
-    fromDate: new Date(),
-    toDate: new Date(),
+    bookingDate: tomorrow,
+    fromDate: tomorrow,
+    toDate: tomorrow,
   });
   const { user } = useAuthContext();
   const { logout } = useLogout();
@@ -501,9 +504,8 @@ export default function BookingFlow() {
 
     // To calculate the no. of days between two dates
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-    setNumberOfDays(Math.round(Difference_In_Days));
-    setTotalAmount(studioDailyRate * Math.round(Difference_In_Days));
+    setNumberOfDays(Math.round(Difference_In_Days) + 1);
+    setTotalAmount(studioDailyRate * (Math.round(Difference_In_Days) + 1));
   };
 
   return (

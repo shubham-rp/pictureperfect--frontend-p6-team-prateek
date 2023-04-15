@@ -31,6 +31,9 @@ const useStyles = makeStyles()((theme) => {
     },
     editProfileButton: {
       borderRadius: 24,
+      width: 196,
+      height: 48,
+      margin: 24,
     },
     updatePasswordButton: {
       borderRadius: 24,
@@ -38,9 +41,11 @@ const useStyles = makeStyles()((theme) => {
     },
     basicDetailsTextInputField: {
       width: 333,
+      margin: 24,
     },
     emailIdTextField: {
-      width: 429,
+      width: 333,
+      margin: 24,
     },
     passwordField: {
       width: 500,
@@ -49,6 +54,18 @@ const useStyles = makeStyles()((theme) => {
       textAlign: "center",
       color: "red",
       fontSize: 32,
+    },
+    updateNameGrid: {
+      display: "flex",
+      justifyContent: "space-evenly",
+    },
+    updateEmailGrid: {
+      display: "flex",
+      justifyContent: "space-evenly",
+    },
+    editProfileHeader: {
+      textAlign: "center",
+      color: theme.palette.secondary.main,
     },
   };
 });
@@ -203,45 +220,46 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
     <div>
       <Toolbar />
 
-      <Typography paragraph>Edit Profile</Typography>
+      <Typography variant="h5" className={classes.editProfileHeader}>
+        Edit Profile
+      </Typography>
       <Typography paragraph>
         {isLoading ? (
           <CircularProgress />
         ) : (
-          <Grid container xs={12} spacing={2} sx={{ padding: 4 }}>
-            <Grid item xs={6}>
-              <TextField
-                id="outlined-basic"
-                label="First Name"
-                variant="outlined"
-                className={classes.basicDetailsTextInputField}
-                value={editUserFirstName}
-                InputLabelProps={{ shrink: true }}
-                onChange={handleUserFirstName}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                id="outlined-basic"
-                label="Last Name"
-                variant="outlined"
-                className={classes.basicDetailsTextInputField}
-                value={editUserLastName}
-                InputLabelProps={{ shrink: true }}
-                onChange={handleUserLastName}
-              />
-            </Grid>
-            <Grid item xs={12} className={classes.editProfileButtonWrapper}>
-              {" "}
-              <Button
-                variant="contained"
-                className={classes.editProfileButton}
-                onClick={handleBasicDetailsOpen}
-                disabled={isUpdateBasicDetailsDisabled}
-              >
-                Update Basic Details
-              </Button>
-            </Grid>
+          <Grid
+            container
+            xs={12}
+            spacing={2}
+            sx={{ padding: 4 }}
+            className={classes.updateNameGrid}
+          >
+            <TextField
+              id="outlined-basic"
+              label="First Name"
+              variant="outlined"
+              className={classes.basicDetailsTextInputField}
+              value={editUserFirstName}
+              InputLabelProps={{ shrink: true }}
+              onChange={handleUserFirstName}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Last Name"
+              variant="outlined"
+              className={classes.basicDetailsTextInputField}
+              value={editUserLastName}
+              InputLabelProps={{ shrink: true }}
+              onChange={handleUserLastName}
+            />
+            <Button
+              variant="contained"
+              className={classes.editProfileButton}
+              onClick={handleBasicDetailsOpen}
+              disabled={isUpdateBasicDetailsDisabled}
+            >
+              Update Basic Details
+            </Button>
           </Grid>
         )}
 
@@ -271,54 +289,59 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
         </Dialog>
       </Typography>
       <Divider />
-      <Grid container xs={12} spacing={2} sx={{ padding: 4 }}>
-        <Grid item xs={5}>
-          <TextField
-            id="outlined-basic"
-            label="Edit Email Id"
-            variant="outlined"
-            className={classes.emailIdTextField}
-            value={editUserEmail}
-            onChange={handleEditUserEmail}
-          />
-        </Grid>
 
-        <Grid item xs={7}>
-          {" "}
-          <Button
-            variant="contained"
-            className={classes.editProfileButton}
-            onClick={handleEmailOpen}
-            disabled={isUpdateEmailDisabled}
-          >
-            Verify & Update Email
-          </Button>
-        </Grid>
-        <Dialog
-          open={emailOpen}
-          onClose={handleEmailClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
+      <Grid
+        container
+        xs={12}
+        spacing={2}
+        sx={{ padding: 4 }}
+        className={classes.updateEmailGrid}
+      >
+        <TextField
+          id="outlined-basic"
+          label="Email Address"
+          variant="outlined"
+          className={classes.emailIdTextField}
+          value={editUserEmail}
+          onChange={handleEditUserEmail}
+        />{" "}
+        <Button
+          variant="contained"
+          className={classes.editProfileButton}
+          onClick={handleEmailOpen}
+          disabled={isUpdateEmailDisabled}
         >
-          <DialogTitle
-            id="alert-dialog-title"
-            className={classes.dialogAlertHeader}
-          >
-            <ErrorTwoToneIcon />
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure you want to update your email ?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleEmailClose}>No</Button>
-            <Button onClick={handleUpdateUserEmail} autoFocus>
-              Yes
-            </Button>
-          </DialogActions>
-        </Dialog>
+          Verify & Update Email
+        </Button>
       </Grid>
+      <Dialog
+        open={emailOpen}
+        onClose={handleEmailClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle
+          id="alert-dialog-title"
+          className={classes.dialogAlertHeader}
+        >
+          <ErrorTwoToneIcon />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to update your email ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleEmailClose}>No</Button>
+          <Button onClick={handleUpdateUserEmail} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/*
+      
+      Update Password Feature - to be implemented - Future Scope
 
       <Divider />
       <Grid
@@ -368,7 +391,7 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
             Update Password
           </Button>
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   );
 };

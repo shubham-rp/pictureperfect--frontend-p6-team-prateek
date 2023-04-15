@@ -164,6 +164,7 @@ export default function ClientDashboardLayout({
   const handleLogoutClick = () => {
     logout();
   };
+
   let menuOpen = Boolean(anchorEl);
   return (
     <StudioProfileDisplayContext.Provider value={{ setComponentToBeDisplayed }}>
@@ -249,6 +250,7 @@ export default function ClientDashboardLayout({
                   <ListItemText
                     primary={`${clientFirstName} ${clientLastName}`}
                     sx={{ opacity: open ? 1 : 0 }}
+                    onClick={handleDrawerOpenClose}
                   />
                 </ListItemButton>
               </ListItem>

@@ -7,7 +7,12 @@ import {
   Grid,
   Stack,
   Typography,
+  CardHeader,
+  Card,
+  CardActions,
+  CardMedia,
 } from "@mui/material";
+
 import CallIcon from "@mui/icons-material/Call";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -24,22 +29,42 @@ const useStyles = makeStyles()((theme) => {
     studioProfilePicture: {
       width: 128,
       height: 128,
-      margin: 16,
+      marginTop: 64,
+      marginBottom: 64,
+      "@media (max-width: 1024px)": {
+        marginTop: 0,
+        marginBottom: 0,
+      },
     },
     studioDetails: {
-      height: 300,
+      display: "flex",
+      justifyContent: "space-evenly",
       backgroundColor: "#E8DEF8",
     },
+    studioButtonsStack: {
+      marginTop: 64,
+      marginBottom: 64,
+      "@media (max-width: 1024px)": {
+        marginTop: 0,
+        marginBottom: 0,
+      },
+    },
+    studioDetailsStack: {
+      marginTop: 64,
+      marginBottom: 64,
+      "@media (max-width: 1024px)": {
+        marginTop: 0,
+        marginBottom: 0,
+      },
+    },
     studioAboutUs: {
-      height: 150,
+      textAlign: "center",
     },
     studioLocation: {
       height: 150,
       textAlign: "center",
     },
-    studioAlbumsPackages: {
-      height: 240,
-    },
+
     profilePicture: {
       display: "flex",
       justifyContent: "right",
@@ -95,24 +120,7 @@ const useStyles = makeStyles()((theme) => {
       borderRadius: 3,
       margin: 4,
     },
-    locationTextItem: {
-      display: "inline-block",
-      color: "white",
-      fontSize: 14,
-      backgroundColor: theme.palette.secondary.main,
-      padding: 2,
-      borderRadius: 3,
-      margin: 4,
-    },
-    languageTextItem: {
-      display: "inline-block",
-      color: "white",
-      fontSize: 14,
-      backgroundColor: theme.palette.primary.main,
-      padding: 2,
-      borderRadius: 3,
-      margin: 4,
-    },
+
     callIcon: { marginRight: 4, color: theme.palette.primary.main },
     whatsAppIcon: { marginRight: 4, marginLeft: 4, color: "#12B47D" },
     checkIcon: { marginRight: 4 },
@@ -121,8 +129,10 @@ const useStyles = makeStyles()((theme) => {
       textDecoration: "none",
     },
     subHeading: {
-      color: theme.palette.secondary.main,
-
+      color: "white",
+      backgroundColor: theme.palette.primary.main,
+      fontWeight: "bold",
+      borderRadius: 8,
       margin: 16,
     },
 
@@ -130,7 +140,7 @@ const useStyles = makeStyles()((theme) => {
       marginTop: 16,
     },
     aboutUsText: {
-      margin: 16,
+      textAlign: "center",
     },
     callButton: {
       borderRadius: 16,
@@ -160,6 +170,18 @@ const useStyles = makeStyles()((theme) => {
     contactLinks: {
       textDecoration: "none",
     },
+    noAlbumText: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    albumHeader: {
+      color: "white",
+      backgroundColor: theme.palette.primary.main,
+      padding: 2,
+      borderRadius: 8,
+      margin: 16,
+    },
   };
 });
 
@@ -174,6 +196,7 @@ function StudioProfile({
   studioAbout,
   studioCategory,
   studioProfilePicture,
+  albums,
 }) {
   const { classes } = useStyles();
   const { setComponentToBeDisplayed } = useContext(StudioProfileDisplayContext);
@@ -181,112 +204,106 @@ function StudioProfile({
   return (
     <Box>
       <Grid container className={classes.studioDetails}>
-        <Grid item xs={2} className={classes.profilePicture}>
-          <Avatar
-            alt="Remy Sharp"
-            src={ppLogo}
-            className={classes.studioProfilePicture}
-          />
-        </Grid>
+        <Avatar
+          alt="Remy Sharp"
+          src={ppLogo}
+          className={classes.studioProfilePicture}
+        />
 
-        <Grid item xs={6} className={classes.studioDetailsContent}>
-          <Stack>
-            <Typography variant="h4" className={classes.studioTitle}>
-              {studioName}
-            </Typography>
-            <Typography variant="body" className={classes.studioCity}>
-              {" "}
-              <LocationOnIcon className={classes.locationIcon} />
-              {studioCity}
-            </Typography>
-            <Typography className={classes.studioContact}>
-              <a href={`tel:+91${studioPhoneNumber}`}>
-                <CallIcon className={classes.callIcon} /> {studioPhoneNumber}
-              </a>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={`https://wa.me/+91${studioWhatsAppNumber}`}
-              >
-                <WhatsAppIcon className={classes.whatsAppIcon} />{" "}
-                {studioWhatsAppNumber}
-              </a>{" "}
-            </Typography>
+        <Stack className={classes.studioDetailsStack}>
+          <Typography variant="h4" className={classes.studioTitle}>
+            {studioName}
+          </Typography>
+          <Typography variant="body" className={classes.studioCity}>
+            {" "}
+            <LocationOnIcon className={classes.locationIcon} />
+            {studioCity}
+          </Typography>
+          <Typography className={classes.studioContact}>
+            <a href={`tel:+91${studioPhoneNumber}`}>
+              <CallIcon className={classes.callIcon} /> {studioPhoneNumber}
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={`https://wa.me/+91${studioWhatsAppNumber}`}
+            >
+              <WhatsAppIcon className={classes.whatsAppIcon} />{" "}
+              {studioWhatsAppNumber}
+            </a>{" "}
+          </Typography>
 
-            <Typography variant="body">
-              {studioCategory.map((category, index) => {
-                return (
-                  <span key={index} className={classes.categoryTextItem}>
-                    {category}
-                  </span>
-                );
-              })}
-            </Typography>
-          </Stack>
-        </Grid>
-        <Grid item xs={4} className={classes.buttonGroup}>
-          {" "}
-          <Stack>
-            <div>
-              <Link
-                to="/booking-flow"
-                className={classes.bookNowLink}
-                state={{
-                  studio,
-                  studioName,
-                  studioCity,
-                  studioPhoneNumber,
-                  studioWhatsAppNumber,
-                  studioAddress,
-                  studioPincode,
-                  studioAbout,
-                  studioCategory,
-                  studioProfilePicture,
-                }}
-              >
-                <Button variant="contained" className={classes.studioButtons}>
-                  <CheckCircleIcon className={classes.checkIcon} /> Book Now
-                </Button>
-              </Link>
-              <Button
-                className={classes.studioButtons}
-                variant="outlined"
-                color="error"
-                onClick={() => {
-                  setComponentToBeDisplayed("explore");
-                }}
-              >
-                <RotateLeftIcon />
-                Go Back
+          <Typography variant="body">
+            {studioCategory.map((category, index) => {
+              return (
+                <span key={index} className={classes.categoryTextItem}>
+                  {category}
+                </span>
+              );
+            })}
+          </Typography>
+        </Stack>
+
+        <Stack className={classes.studioButtonsStack}>
+          <div>
+            <Link
+              to="/booking-flow"
+              className={classes.bookNowLink}
+              state={{
+                studio,
+                studioName,
+                studioCity,
+                studioPhoneNumber,
+                studioWhatsAppNumber,
+                studioAddress,
+                studioPincode,
+                studioAbout,
+                studioCategory,
+                studioProfilePicture,
+              }}
+            >
+              <Button variant="contained" className={classes.studioButtons}>
+                <CheckCircleIcon className={classes.checkIcon} /> Book Now
               </Button>
-            </div>
-            <div>
-              <a
-                href={`tel:+91${studioPhoneNumber}`}
-                className={classes.contactLinks}
-              >
-                <Button variant="contained" className={classes.callButton}>
-                  <CallIcon className={classes.callButtonIcon} /> Call
-                </Button>
-              </a>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={`https://wa.me/+91${studioWhatsAppNumber}`}
-                className={classes.contactLinks}
-              >
-                <Button variant="contained" className={classes.whatsAppButton}>
-                  <WhatsAppIcon className={classes.whatsAppButtonIcon} />
-                  WhatsApp
-                </Button>
-              </a>
-            </div>
-          </Stack>
-        </Grid>
+            </Link>
+            <Button
+              className={classes.studioButtons}
+              variant="outlined"
+              color="error"
+              onClick={() => {
+                setComponentToBeDisplayed("explore");
+              }}
+            >
+              <RotateLeftIcon />
+              Go Back
+            </Button>
+          </div>
+          <div>
+            <a
+              href={`tel:+91${studioPhoneNumber}`}
+              className={classes.contactLinks}
+            >
+              <Button variant="contained" className={classes.callButton}>
+                <CallIcon className={classes.callButtonIcon} /> Call
+              </Button>
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={`https://wa.me/+91${studioWhatsAppNumber}`}
+              className={classes.contactLinks}
+            >
+              <Button variant="contained" className={classes.whatsAppButton}>
+                <WhatsAppIcon className={classes.whatsAppButtonIcon} />
+                WhatsApp
+              </Button>
+            </a>
+          </div>
+        </Stack>
       </Grid>
       <Divider orientation="horizontal" flexItem />
       <Grid container>
-        <Grid item xs={7} className={classes.studioAboutUs}>
+        <Grid item lg={8} xs={12} className={classes.studioAboutUs}>
           <Typography variant="h6" className={classes.subHeading}>
             About Us
           </Typography>
@@ -295,8 +312,8 @@ function StudioProfile({
             {studioAbout}
           </Typography>
         </Grid>
-        <Divider orientation="vertical" flexItem />
-        <Grid item xs={4} className={classes.studioLocation}>
+
+        <Grid item lg={4} xs={12} className={classes.studioLocation}>
           <Typography variant="h6" className={classes.subHeading}>
             Location
           </Typography>
@@ -311,21 +328,71 @@ function StudioProfile({
         </Grid>
       </Grid>
       <Divider orientation="horizontal" flexItem />
-      <Grid container className={classes.studioAlbumsPackages}>
-        <Grid item xs={2} className={classes.studioAlbumsPackagesHeader}>
-          <Typography variant="h6"> Albums</Typography>
-        </Grid>
-        <Grid item xs={10} className={classes.studioAlbumsPackages}>
-          Album List
-        </Grid>
-      </Grid>
-      <Divider orientation="horizontal" flexItem />
-      <Grid container className={classes.studioAlbumsPackages}>
-        <Grid item xs={2} className={classes.studioAlbumsPackagesHeader}>
-          <Typography variant="h6"> Packages</Typography>
-        </Grid>
-        <Grid item xs={10} className={classes.studioAlbumsPackages}>
-          Package List
+      <Grid container className={classes.studioAlbumsPackagesHeader}>
+        <Typography variant="h6" className={classes.albumHeader}>
+          {" "}
+          Albums
+        </Typography>
+        <Grid
+          container
+          spacing={2}
+          paddingTop={2}
+          xm={1}
+          className={classes.noAlbumText}
+        >
+          {albums.length ? (
+            albums.map((item) => {
+              return (
+                <Card
+                  key={item._id}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    flexDirection: "column",
+                    maxWidth: 400,
+                    height: 300,
+                    width: 900,
+                    marginBottom: "3%",
+                    marginLeft: "4%",
+                    marginTop: "0.1%",
+                  }}
+                >
+                  <CardHeader
+                    avatar={
+                      <Avatar sx={{ bgcolor: "#6750A4" }} aria-label="recipe">
+                        {item.name[0]}
+                      </Avatar>
+                    }
+                    title={item.name}
+                  />
+                  <CardMedia
+                    key={item._id}
+                    image={item.images[0].imagesUrl}
+                    sx={{
+                      height: 250,
+                      objectFit: "cover",
+                    }}
+                    title="green iguana"
+                  />
+                  <CardActions>
+                    <Button
+                      onClick={() => console.log("Hey")}
+                      variant="contained"
+                      className={classes.signInButton}
+                      size="small"
+                      fullWidth
+                    >
+                      View
+                    </Button>
+                  </CardActions>
+                </Card>
+              );
+            })
+          ) : (
+            <Typography variant="h6" sx={{ padding: 16 }}>
+              No Albums present
+            </Typography>
+          )}
         </Grid>
       </Grid>
     </Box>

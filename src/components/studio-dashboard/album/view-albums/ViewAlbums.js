@@ -73,7 +73,7 @@ export default function ViewAlbums({ details }) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [user]);
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_API_URL}/api/studios/albums`, {

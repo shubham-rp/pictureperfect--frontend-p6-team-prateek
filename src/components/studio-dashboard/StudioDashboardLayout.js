@@ -248,6 +248,7 @@ export default function StudioDashboardLayout({
                 primary={studioName}
                 secondary={studioCity}
                 sx={{ opacity: open ? 1 : 0 }}
+                onClick={handleDrawerOpenClose}
               />
             </ListItemButton>
           </ListItem>
