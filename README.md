@@ -2,16 +2,17 @@
 
 ### A platform which connects Photo Studios with potential customers.
 
-The application is split into a frontend that will be hosted on Netlify and a backend that will be hosted on Render. (Backend repository is provided separately)
+The application is split into a frontend that will be hosted on Netlify and a backend that will be hosted on Render.
+Backend repository to this project: [Picture Perfect Backend](https://github.com/pesto-students/pictureperfect--backend-p6-team-prateek "Picture Perfect Backend Repository")
 
 ### Getting Started
 
 To get started with this application, follow these steps:
 
 1. Clone this repository to your local machine.
-2. Install the dependencies by running npm install.
+2. Install the dependencies by running `npm install`
 3. Create a .env.local file in the root of the project and fill in the required environment variables (see the "Environment Variables" section below).
-4. Run the application using npm start.
+4. Run the application using `npm start`
 5. The application should now be running at http://localhost:3000.
 
 ### Environment Variables
@@ -22,7 +23,7 @@ The following environment variables are used by this application:
 
 To set these environment variables, create a file called .env.local in the root of the project and add the following lines:
 
-REACT_APP_API_URL=<your Render API URL>
+`REACT_APP_API_URL=<your Render API URL>`
 
 ### Deploying to Netlify
 
