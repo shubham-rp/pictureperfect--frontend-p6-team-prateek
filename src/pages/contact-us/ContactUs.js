@@ -16,18 +16,8 @@ import croppedppLogo from "../../images/cropped-pp-logo.png";
 
 const useStyles = makeStyles()((theme) => {
   return {
-    root: {
-      bgcolor: "background.paper",
-      borderColor: "grey.500",
-      border: 1,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      padding: "1rem",
-      borderRadius: "1px",
-    },
-
     loginItems: {
+      display: "flex",
       justifyContent: "center",
       alignItems: "center",
     },
@@ -81,11 +71,21 @@ const useStyles = makeStyles()((theme) => {
       textTransform: "none",
       background: "#7D5260",
       borderRadius: 100,
+      "@media (max-width: 720px)": {
+        marginTop: 8,
+        height: 48,
+        fontSize: 18,
+      },
     },
     logoImage: {
       marginTop: 8,
       width: 128,
       height: 128,
+      "@media (max-width: 720px)": {
+        marginTop: 8,
+        width: 64,
+        height: 64,
+      },
     },
     buttonGroup: {
       textAlign: "left",
@@ -159,14 +159,10 @@ function ContactUs() {
           </div>
         </Grid>
 
-        <Grid item xs={6}>
-          <Box
-            className={classes.root}
-            component="form"
-            onSubmit={handleSubmit}
-          >
+        <Grid item xs={12} lg={6}>
+          <Box component="form" onSubmit={handleSubmit}>
             <Stack spacing={2} className={classes.loginItems}>
-              <img src={ppLogo} />
+              <img src={ppLogo} alt="Person holding camera" />
 
               <TextField
                 required
