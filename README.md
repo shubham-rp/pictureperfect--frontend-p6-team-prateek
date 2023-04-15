@@ -35,7 +35,7 @@ To deploy the frontend of this application to Netlify, follow these steps:
    Build command: `CI= npm run build`
    Publish directory: build/
 4. Set the following environment variables:
-   REACT_APP_API_URL: The URL of the backend API. This should be set to the URL of your Render deployment.
+   `REACT_APP_API_URL=<your Render API URL>`. This should be set to the URL of your Render deployment.
 5. Deploy the site.
 
 ### Deploying the backend to Render
@@ -62,7 +62,7 @@ To deploy the backend of this application to Render, follow these steps:
 If you would like to contribute to this project, please follow these guidelines:
 
 1. Fork this repository to your own GitHub account and clone it to your local machine.
-2. Create a new branch for your changes using git checkout -b <branch-name>.
+2. Create a new branch for your changes using `git checkout -b <branch-name>`
 3. Make your changes and commit them with a descriptive message.
-4. Push your changes to your fork using git push origin <branch-name>.
+4. Push your changes to your fork using `git push origin <branch-name>`
 5. Submit a pull request to this repository.
