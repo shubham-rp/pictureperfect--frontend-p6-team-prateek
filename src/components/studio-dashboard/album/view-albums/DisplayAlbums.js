@@ -4,15 +4,12 @@ import {
   Button,
   Grid,
   Card,
-  CardContent,
   CardMedia,
   Typography,
   Stack,
-  Divider,
 } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
-import axios from "axios";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -33,39 +30,6 @@ export default function DisplayAlbums({
 }) {
   const { classes } = useStyles();
 
-  console.log(albumName, albumDescription, albumImages);
-
-  // React.useEffect(() => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_BACKEND_API_URL}/api/studios/albums/${id}`)
-  //     .then((response) => {
-  //       setAlbumDetails(response.data);
-  //       setImageList(response.data.images);
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [id]);
-  // React.useEffect(() => {
-  //   imagelist.map((imageid) => {
-  //     axios
-  //       .get(`http://localhost:3333/api/studios/albums/image/${imageid}`)
-  //       .then((response) => {
-  //         setImageUrl([...imageUrl, response.data.imagesUrl]);
-  //         setImgLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   });
-  // }, [imagelist]);
-
-  // setLoading(true);
-
-  // if (ImgLoading) {
-  //   return <div>ImageLoading...</div>;
-  // }
   return (
     <Stack>
       <Grid container rowSpacing={2}>
@@ -109,13 +73,11 @@ export default function DisplayAlbums({
           </Card>
         </Grid>
 
-        {/* item xs={2} sm={4} md={4} */}
         <Grid container spacing={1} paddingTop={2} xm={2} paddingLeft={1}>
           {albumImages.map((image, index) => {
             return (
               <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                 <Card>
-                  {console.log("URLS " + image.imagesUrl)}
                   <CardMedia component="img" image={image.imagesUrl} />
                 </Card>
               </Grid>
@@ -128,7 +90,6 @@ export default function DisplayAlbums({
           {" "}
           <Button
             variant="contained"
-            // className={classes.signInButton}
             onClick={handelClick}
             size="small"
             paddingTop="8"

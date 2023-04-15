@@ -73,7 +73,7 @@ const useStyles = makeStyles()((theme) => {
       borderRadius: 100,
       "@media (max-width: 720px)": {
         marginTop: 8,
-        height: 48,
+        height: 32,
         fontSize: 18,
       },
     },

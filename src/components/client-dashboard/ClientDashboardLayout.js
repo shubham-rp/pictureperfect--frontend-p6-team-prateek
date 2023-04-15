@@ -322,6 +322,7 @@ const clientDrawerItems = [
     componentValue: "explore",
     isDivider: false,
   },
+  // To be implemented in future
   // {
   //   componentName: "Starred",
   //   componentIcon: <StarBorderIcon />,

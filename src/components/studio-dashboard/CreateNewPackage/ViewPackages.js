@@ -43,7 +43,6 @@ export default function ViewPackages() {
       {!showPage && (
         <Grid className={classes.grid}>
           {cardData.map((card) => {
-            // setPackageId(card.id);
             return (
               <Card
                 key={card.id}
@@ -61,7 +60,6 @@ export default function ViewPackages() {
                 </CardContent>
                 <CardActions>
                   <Button
-                    // onClick={handleViewButton}
                     onClick={() => handleViewClick(card.id)}
                     variant="contained"
                     className={classes.signInButton}

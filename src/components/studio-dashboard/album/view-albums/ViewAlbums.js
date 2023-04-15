@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useAuthContext } from "../../../../hooks/useAuthContext";
-import Toolbar from "@mui/material/Toolbar";
+
 import DisplayAlbums from "./DisplayAlbums";
-import { Box, Grid, Paper, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 
 import { useState } from "react";
@@ -11,24 +11,13 @@ import { makeStyles } from "tss-react/mui";
 import CardHeader from "@mui/material/CardHeader";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
+
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
-// import Stack from "@mui/material/Stack";
+
 import axios from "axios";
-import {
-  List,
-  CssBaseline,
-  Typography,
-  Divider,
-  IconButton,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Chip,
-} from "@mui/material";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -78,7 +67,6 @@ export default function ViewAlbums({ details }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setAlbumlist(response.data);
         setLoading(false);
       })
@@ -100,21 +88,12 @@ export default function ViewAlbums({ details }) {
       .catch((err) => {
         console.log(err);
       });
-  }, [deleteAlbum]);
+  }, [deleteAlbum, user]);
 
-  // useEffect(() => {
-  //   indexOfLastItem = currentPage * itemsPerPage;
-  //   indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  //   currentItems = albumlist.slice(indexOfFirstItem, indexOfLastItem);
-  //   pageCount = Math.ceil(albumlist.length / itemsPerPage);
-  // }, [handleDeleteButton]);
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
-    // setShowPage(!showPage);
   };
   const handleViewClick = (cardId) => {
-    console.log("viwe click" + cardId);
-
     const albumToBeDisplayed = albumlist.filter((album) => {
       return album._id === cardId;
     });
@@ -126,13 +105,11 @@ export default function ViewAlbums({ details }) {
   };
 
   const handleDeleteButton = (cardId) => {
-    console.log("viwe click" + cardId);
     axios
       .delete(
         `${process.env.REACT_APP_BACKEND_API_URL}/api/studios/albums/delete/${cardId}`
       )
       .then((response) => {
-        console.log("album deleted");
         setDeletealbum(!deleteAlbum);
       })
       .catch((err) => {
@@ -175,7 +152,6 @@ export default function ViewAlbums({ details }) {
                     marginTop: "0.1%",
                   }}
                 >
-                  {console.log(item.images[0].imagesUrl[0])}
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: "#6750A4" }} aria-label="recipe">
@@ -190,16 +166,13 @@ export default function ViewAlbums({ details }) {
                     sx={{
                       height: 250,
                       objectFit: "cover",
-                      // 16:9 aspect ratio
                     }}
                     title="green iguana"
                   />
                   <CardActions>
                     <Button
-                      // onClick={handleViewButton}
                       onClick={() => handleDeleteButton(item._id)}
                       variant="contained"
-                      // className={classes.signInButton}
                       sx={{ background: "#ff4d4d" }}
                       size="small"
                       fullWidth
@@ -207,7 +180,6 @@ export default function ViewAlbums({ details }) {
                       Delete
                     </Button>
                     <Button
-                      // onClick={handleViewButton}
                       onClick={() => handleViewClick(item._id)}
                       variant="contained"
                       className={classes.signInButton}
@@ -217,9 +189,6 @@ export default function ViewAlbums({ details }) {
                       View
                     </Button>
                   </CardActions>
-                  {/* <Grid item rowSpacing={4} xs={12} sm={4} md={4}>
-                  <AlbumCard t={item.name} />
-                </Grid> */}
                 </Card>
               );
             })}

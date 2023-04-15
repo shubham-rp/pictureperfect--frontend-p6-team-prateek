@@ -5,7 +5,6 @@ import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import TagsInput from "./TagsInput";
 import { Typography } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -112,14 +111,6 @@ export default function ProfileInfo(props) {
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
-
-  // const handleServiceLocations = (serviceLocations) => {
-  //   props.onStudioLocations(serviceLocations);
-  // };
-
-  // const handleLanguagesKnown = (languagesKnown) => {
-  //   props.onLanguagesKnown(languagesKnown);
-  // };
 
   useEffect(() => {
     if (props.values.studioProfilePicture !== "") {
@@ -243,55 +234,7 @@ export default function ProfileInfo(props) {
               </span>
             )}
           </div>
-          {/* <TextField
-            id="studioServiceLocations"
-            value={props.values.studioServiceLocations}
-            onChange={props.handler}
-            label="Service Locations*"
-            multiline
-            maxRows={4}
-          /> */}
-          {/* <TagsInput
-            selectedTags={handleServiceLocations}
-            fullWidth
-            variant="outlined"
-            id="studioServiceLocations"
-            name="Service Locations"
-            placeholder="Add multiple locations by pressing Enter key"
-            label="Service Locations"
-          /> */}
-          {/* <div>
-            {!!props.errorMessage.studioLanguagesKnown && (
-              <span style={{ color: "red" }}>
-                {props.errorMessage.studioLanguagesKnown}
-              </span>
-            )}
-          </div>
 
-           <TextField
-            id="studioLanguagesKnown"
-            value={props.values.studioLanguagesKnown}
-            onChange={props.handler}
-            label="Languages Known*"
-            placeholder=""
-            multiline
-          /> 
-          <TagsInput
-            selectedTags={handleLanguagesKnown}
-            fullWidth
-            variant="outlined"
-            id="studioLanguagesKnown"
-            name="Languages Known"
-            placeholder="Add multiple languages by pressing Enter or comma separated"
-            label="Languages Known"
-          /> */}
-          {/* <div>
-            {!!props.errorMessage.studioAbout && (
-              <span style={{ color: "red" }}>
-                {props.errorMessage.studioAbout}
-              </span>
-            )}
-          </div> */}
           <FormControl>
             <TextField
               className={classes.loginTextField}

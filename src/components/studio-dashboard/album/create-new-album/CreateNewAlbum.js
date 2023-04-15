@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 import { useAuthContext } from "../../../../hooks/useAuthContext";
 import { makeStyles } from "tss-react/mui";
 import axios from "axios";
@@ -11,22 +11,13 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import { categories } from "../../../../assets/mock-data/categories";
 import ImageUploading from "react-images-uploading";
-import {
-  Box,
-  Grid,
-  Paper,
-  Stack,
-  Button,
-  Divider,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Grid, Paper, Button, TextField, Typography } from "@mui/material";
 
 const useStyles = makeStyles()((theme) => {
   return {
     outerPage: {
       backgroundColor: "#FFFBFE",
-      borderColor: "yellow", //"grey.500"
+      borderColor: "yellow",
       border: 1,
       display: "flex",
       flexDirection: "column",
@@ -45,7 +36,7 @@ const useStyles = makeStyles()((theme) => {
 
     innerPage: {
       backgroundColor: "#FFFBFE",
-      borderColor: "yellow", //"grey.500"
+      borderColor: "yellow",
       border: 1,
       display: "flex",
       flexDirection: "column",
@@ -85,7 +76,7 @@ const useStyles = makeStyles()((theme) => {
       marginLeft: "200%",
       margin: "1%",
       padding: "20%",
-      flexWrap: "wrap",
+
       marginTop: 10,
       border: "1px Black Solid",
       borderRadius: "10px",
@@ -131,7 +122,6 @@ const CreateNewAlbum = () => {
       }, 3000);
       return;
     }
-    console.log({ ...createAlbum, images: images });
 
     const data = await axios.post(
       `${process.env.REACT_APP_BACKEND_API_URL}/api/studios/albums/album`,
@@ -154,8 +144,6 @@ const CreateNewAlbum = () => {
   };
 
   const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
     setImages(imageList);
   };
 
@@ -168,7 +156,6 @@ const CreateNewAlbum = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === "image") {
-      console.log(name, value);
       return;
     }
 
@@ -177,9 +164,7 @@ const CreateNewAlbum = () => {
       [name]: value,
     }));
   };
-  // useEffect(() => {
-  //   console.log(createAlbum);
-  // }, [createAlbum]);
+
   return (
     <>
       <Paper
@@ -207,7 +192,6 @@ const CreateNewAlbum = () => {
             container
             rowSpacing={10}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-            // className={classes.innerCard}
           >
             <Grid xs={7} paddingTop={2}>
               <TextField
@@ -261,7 +245,7 @@ const CreateNewAlbum = () => {
                   onChange={onChange}
                   maxNumber={maxNumber}
                   dataURLKey="data_url"
-                  acceptType={['jpg', 'gif', 'png','jpeg']}
+                  acceptType={["jpg", "gif", "png", "jpeg"]}
                 >
                   {({
                     imageList,
@@ -293,25 +277,6 @@ const CreateNewAlbum = () => {
                             This is an error alert —{" "}
                             <strong>Please Add valid Images!</strong>
                           </Alert>
-                          {/* {errors.maxNumber && (
-                              <span>
-                                Number of selected images exceed maxNumber
-                              </span>
-                            )}
-                            {errors.acceptType && (
-                              <span color="red">
-                                Your selected file type is not allow
-                              </span>
-                            )}
-                            {errors.maxFileSize && (
-                              <span>Selected file size exceed maxFileSize</span>
-                            )}
-                            {errors.resolution && (
-                              <span>
-                                Selected file is not match your desired
-                                resolution
-                              </span>
-                            )} */}
                         </div>
                       )}
                       <Grid

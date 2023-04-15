@@ -64,9 +64,7 @@ const useStyles = makeStyles()((theme) => {
     dropDown: {
       width: 400,
     },
-    // mainBox: {
-    //   marginTop: 30,
-    // },
+
     logoImage: {
       width: 120,
       height: 48,
@@ -207,7 +205,6 @@ export default function BookingFlow(props) {
                         <DatePicker
                           label="To Date"
                           value={dayjs(props.values.toDate)}
-                          // defaultValue={}
                           disablePast={true}
                           shouldDisableDate={(day) => {
                             return day < props.values.fromDate;

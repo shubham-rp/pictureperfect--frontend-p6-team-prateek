@@ -12,7 +12,6 @@ import { styled } from "@mui/material/styles";
 import { tableCellClasses } from "@mui/material/TableCell";
 
 import { registeredStudiosData } from "../../assets/mock-data/registeredStudiosData";
-import { Button } from "@mui/material";
 import VerifiedTwoToneIcon from "@mui/icons-material/VerifiedTwoTone";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

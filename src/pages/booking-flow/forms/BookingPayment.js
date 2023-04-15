@@ -42,11 +42,7 @@ export default function BookingFlow({
 }) {
   const { classes } = useStyles();
 
-  const paymentHandler = async (amount) => {
-    // const { data } = await axios.get("http://localhost:7000", {
-    //   amount,
-    // });
-  };
+  const paymentHandler = async (amount) => {};
 
   return (
     <>

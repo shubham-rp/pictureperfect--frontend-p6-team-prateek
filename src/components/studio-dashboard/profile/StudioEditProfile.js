@@ -137,7 +137,7 @@ function StudioEditProfile({
       )
       .then((response) => {
         toast.success("Studio Name Successfully updated!");
-        console.log(response.data);
+
         setIsEmailLoading(false);
       })
       .catch((error) => {
@@ -146,8 +146,6 @@ function StudioEditProfile({
         setIsEmailLoading(false);
         console.error(error);
       });
-
-    console.log(studioEmailValue);
   };
 
   const handleStudioNameOpen = () => {
@@ -191,7 +189,7 @@ function StudioEditProfile({
       )
       .then((response) => {
         toast.success("Email Successfully updated!");
-        console.log(response.data);
+
         setIsEmailLoading(false);
       })
       .catch((error) => {

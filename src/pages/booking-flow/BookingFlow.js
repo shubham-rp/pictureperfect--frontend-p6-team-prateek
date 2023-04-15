@@ -274,13 +274,11 @@ export default function BookingFlow() {
       bookingFormData.userSelectCategory !== "" &&
       bookingFormData.userAddress !== "" &&
       bookingFormData.userPinCode !== "" &&
-      // bookingFormData.bookingDate != "" &&
       error.userContactNumber === "" &&
       error.userAlternateContactNumber === "" &&
       error.userSelectCategory === "" &&
       error.userAddress === "" &&
       error.userPinCode === ""
-      // error.bookingDate == ""
     ) {
       setFlag(false);
     } else {
@@ -327,18 +325,6 @@ export default function BookingFlow() {
 
     setIsLoading(true);
     try {
-      // const response = await fetch("http://localhost:8080/create-user", {
-      // const response = await fetch(
-      //   "https://picture-perfect-backend.onrender.comapi/bookings/booking",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       Authorization: `Bearer ${user.token}`,
-      //     },
-      //     finalBookingData: JSON.stringify(finalBookingData),
-      //   }
-      // );
-
       const response = await axios
         .post(
           `${process.env.REACT_APP_BACKEND_API_URL}/api/bookings/booking`,
@@ -365,52 +351,7 @@ export default function BookingFlow() {
   const handleBookingFormData = (e) => {
     if (e.target) {
       const { id, value, name } = e.target;
-      // if (id === "userName") {
-      //   setBookingFormData((prev) => {
-      //     return {
-      //       ...prev,
-      //       [id]: value,
-      //     };
-      //   });
-      //   if (validator(id, value)) {
-      //     setError((prev) => {
-      //       return {
-      //         ...prev,
-      //         [id]: "",
-      //       };
-      //     });
-      //   } else {
-      //     setError((prev) => {
-      //       return {
-      //         ...prev,
-      //         [id]: "Enter valid name.",
-      //       };
-      //     });
-      //   }
-      // }
-      // if (id === "userEmail") {
-      //   setBookingFormData((prev) => {
-      //     return {
-      //       ...prev,
-      //       [id]: value,
-      //     };
-      //   });
-      //   if (validator(id, value)) {
-      //     setError((prev) => {
-      //       return {
-      //         ...prev,
-      //         [id]: "",
-      //       };
-      //     });
-      //   } else {
-      //     setError((prev) => {
-      //       return {
-      //         ...prev,
-      //         [id]: "Enter valid Email",
-      //       };
-      //     });
-      //   }
-      // }
+
       if (id === "userContactNumber") {
         setBookingFormData((prev) => {
           return {
@@ -527,35 +468,6 @@ export default function BookingFlow() {
         }
       }
     }
-
-    // if (bookingDate) {
-    //   console.log("kjgjkhkjlh=> ", fromDate);
-
-    //   setBookingFormData((prev) => {
-    //     return {
-    //       ...prev,
-    //       bookingDate: e.toDate(),
-    //     };
-    //   });
-    // }
-    // if (fromDate) {
-    //   console.log(fromDate);
-    //   setBookingFormData((prev) => {
-    //     return {
-    //       ...prev,
-    //       fromDate: e.toDate(),
-    //     };
-    //   });
-    // }
-    //  else {
-    //   console.log("event => ", bookingDate);
-    //   setBookingFormData((prev) => {
-    //     return {
-    //       ...prev,
-    //       bookingDate: e.toDate(),
-    //     };
-    //   });
-    // }
   };
   const handleFromDate = (e) => {
     setBookingFormData((prev) => {
@@ -593,86 +505,6 @@ export default function BookingFlow() {
     setNumberOfDays(Math.round(Difference_In_Days));
     setTotalAmount(studioDailyRate * Math.round(Difference_In_Days));
   };
-  // const handlebookingFormData = (e) => {
-  //   if (e.target) {
-  //     const { id, value, name } = e.target;
-  //     if (name) {
-  //       setBookingFormData((prev) => {
-  //         return {
-  //           ...prev,
-  //           [name]: value,
-  //         };
-  //       });
-  //     } else {
-  //       setBookingFormData((prev) => {
-  //         return {
-  //           ...prev,
-  //           [id]: value,
-  //         };
-  //       });
-  //     }
-  //   } else {
-  //     setBookingFormData((prev) => {
-  //       return {
-  //         ...prev,
-  //         bookingDate: e.toDate(),
-  //       };
-  //     });
-  //   }
-  // };
-
-  // const handleProccedToPayments = (e) => {
-  //   const {
-  //     userName,
-  //     userEmail,
-  //     userContactNumber,
-  //     userAlternateContactNumber,
-  //     userSelectCategory,
-  //     userAddress,
-  //     userPinCode,
-  //   } = bookingFormData;
-  //   if (userName !== "") {
-  //     if (userEmail !== "" && validator("userEmail", userEmail)) {
-  //       if (
-  //         userContactNumber !== "" &&
-  //         validator("userContactNumber", userContactNumber)
-  //       ) {
-  //         if (userAlternateContactNumber !== userContactNumber) {
-  //           if (userSelectCategory !== "") {
-  //             if (userAddress !== "" && validator("userAddress", userAddress)) {
-  //               if (
-  //                 userPinCode !== "" &&
-  //                 validator("userPinCode", userPinCode)
-  //               ) {
-  //                 e.preventDefault();
-  //                 let proccedToPayments = {
-  //                   ...bookingFormData,
-  //                 };
-  //                 console.log(proccedToPayments);
-  //               } else {
-  //                 alert("Enter a Valid PinCode");
-  //               }
-  //             } else {
-  //               alert("Enter a Valid Address");
-  //             }
-  //           } else {
-  //             alert("Please Select a Category");
-  //           }
-  //         } else {
-  //           alert(
-  //             "Alternate Mobile Number Cannot be same as Primary Contact Number"
-  //           );
-  //         }
-  //       } else {
-  //         alert("Enter a valid Contact Number");
-  //       }
-  //     } else {
-  //       alert("Enter a valid Email");
-  //     }
-  //   } else {
-  //     alert("Enter a valid Name");
-  //   }
-  // };
 
   return (
     <>
@@ -724,7 +556,6 @@ export default function BookingFlow() {
       <Box className={classes.topBox}>
         {" "}
         <Drawer
-          // className={classes.drawer}
           variant="permanent"
           sx={{
             width: drawerWidth,

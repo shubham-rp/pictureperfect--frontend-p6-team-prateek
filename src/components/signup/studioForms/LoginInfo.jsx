@@ -74,13 +74,6 @@ export default function LoginInfo(props) {
       >
         <Stack spacing={3} className={classes.loginItems}>
           <Grid>
-            {/* <div>
-              {!!props.errorMessage.studioName && (
-                <span style={{ color: "red" }}>
-                  {props.errorMessage.studioName}
-                </span>
-              )}
-            </div> */}
             <FormControl>
               <TextField
                 className={classes.nameTextField}
@@ -99,15 +92,7 @@ export default function LoginInfo(props) {
             </FormControl>
           </Grid>
 
-          {/* {!!props.errorMessage && <span>{props.errorMessage}</span>} */}
           <Grid>
-            {/* <div>
-              {!!props.errorMessage.studioEmail && (
-                <span style={{ color: "red" }}>
-                  {props.errorMessage.studioEmail}
-                </span>
-              )}
-            </div> */}
             <FormControl>
               <TextField
                 required
@@ -126,13 +111,6 @@ export default function LoginInfo(props) {
             </FormControl>
           </Grid>
           <Grid>
-            {/* <div>
-              {!!props.errorMessage.password && (
-                <span style={{ color: "red" }}>
-                  {props.errorMessage.password}
-                </span>
-              )}
-            </div> */}
             <FormControl>
               <Tooltip
                 arrow
@@ -158,13 +136,6 @@ export default function LoginInfo(props) {
             </FormControl>
           </Grid>
           <Grid>
-            {/* <div>
-              {!!props.errorMessage.confirmPassword && (
-                <span style={{ color: "red" }}>
-                  {props.errorMessage.confirmPassword}
-                </span>
-              )}
-            </div> */}
             <FormControl>
               <TextField
                 required

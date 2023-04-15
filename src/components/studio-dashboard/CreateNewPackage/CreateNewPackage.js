@@ -20,7 +20,7 @@ import { Divider } from "@mui/material";
 import Stack from "@mui/material/Stack";
 
 import OutlinedInput from "@mui/material/OutlinedInput";
-// import InputLabel from "@mui/material/InputLabel";
+
 import InputAdornment from "@mui/material/InputAdornment";
 
 const bull = (
@@ -34,25 +34,11 @@ const bull = (
 
 const useStyles = makeStyles()((theme) => {
   return {
-    // root: {
-    //   bgcolor: "background.paper",
-    //   borderColor: "grey.500",
-    //   border: 1,
-    //   display: "flex",
-    //   justifyContent: "center",
-    //   alignItems: "center",
-    //   padding: "1rem",
-    //   borderRadius: "1px",
-    // },
-
     signInButton: {
       width: 175,
       height: 48,
       fontSize: 14,
       borderRadius: 24,
-      // marginLeft: 450,
-      // background: "#6750a4",
-      // color: "white",
     },
     cardContent: {
       display: "flex",
@@ -83,12 +69,7 @@ const useStyles = makeStyles()((theme) => {
     },
   };
 });
-export default function CreateNewPackage(props) {
-  // const [age, setAge] = React.useState("");
-
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
+export default function CreateNewPackage() {
   const [toggle, setToggle] = useState(true);
   const { classes } = useStyles();
   const [packageFormData, setPackageFormData] = React.useState({
@@ -103,19 +84,17 @@ export default function CreateNewPackage(props) {
 
   const handlePackageFormData = (e) => {
     const { id, value } = e.target;
-    // if (id === "pakageName") {
+
     setPackageFormData((prev) => {
       return {
         ...prev,
         [id]: value,
       };
     });
-    // }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("formData => ", packageFormData);
   };
 
   return (
@@ -149,8 +128,6 @@ export default function CreateNewPackage(props) {
                   required
                   className={classes.nameTextField}
                   id="pakageName"
-                  // value={props.values.password}
-                  // onChange={props.handler}
                   label="Enter Pakage Name"
                   onChange={handlePackageFormData}
                 />
@@ -170,9 +147,7 @@ export default function CreateNewPackage(props) {
 
                 <TextField
                   id="pakageContents"
-                  // value={props.values.studioAbout}
                   label="Pakage Contents"
-                  // onChange={props.handler}
                   multiline
                   rows={4}
                   defaultValue=""
@@ -180,9 +155,7 @@ export default function CreateNewPackage(props) {
                 />
                 <TextField
                   id="optionalPakageContents"
-                  // value={props.values.studioAbout}
                   label="Optional Pakage Contents"
-                  // onChange={props.handler}
                   multiline
                   rows={4}
                   defaultValue=""
@@ -231,10 +204,7 @@ export default function CreateNewPackage(props) {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     name="packageCategory"
-                    // value={category}
                     label="Category"
-                    // onChange={handleChange}
-                    // multiple={true}
                     onChange={handlePackageFormData}
                   >
                     <MenuItem value="Wedding">Wedding</MenuItem>

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRegisterStudio } from "../../hooks/useRegisterStudio";
 import { Link } from "react-router-dom";
-import { styled } from "@mui/material/styles";
 
 import Tooltip from "@mui/material/Tooltip";
-import Paper from "@mui/material/Paper";
+
 import Grid from "@mui/material/Grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import Stepper from "@mui/material/Stepper";
@@ -22,14 +21,6 @@ import validator from "../../utils/validator";
 
 import { makeStyles } from "tss-react/mui";
 import { Stack } from "@mui/system";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -123,7 +114,6 @@ export default function StudioSignUp({ cities, categories }) {
 
   const [error, setError] = React.useState({});
 
-  // component.didupdate
   React.useEffect(() => {}, [currentForm]);
 
   React.useEffect(() => {
@@ -136,12 +126,9 @@ export default function StudioSignUp({ cities, categories }) {
       error.studioEmail === "" &&
       error.password === "" &&
       error.confirmPassword === ""
-      // error.length === 0
     ) {
-      // console.log("if message");
       setFlag(false);
     } else {
-      // console.log("else message");
       setFlag(true);
     }
   }, [loginFormData, error]);
@@ -160,7 +147,6 @@ export default function StudioSignUp({ cities, categories }) {
       error.studioPhoneNumber === "" &&
       error.studioWhatsAppNumber === "" &&
       error.studioCity === ""
-      // error.length === 0
     ) {
       setContactFlag(false);
     } else {
@@ -171,22 +157,17 @@ export default function StudioSignUp({ cities, categories }) {
   React.useEffect(() => {
     if (
       profileInfoData.studioCategory !== "" &&
-      // profileInfoData.studioServiceLocations !== "" &&
       profileInfoData.studioDailyRate !== "" &&
       profileInfoData.studioAbout !== "" &&
       error.studioCategory === "" &&
-      // error.studioServiceLocations === "" &&
       error.studioDailyRate === "" &&
       error.studioAbout === ""
-      // error.length === 0
     ) {
       setProfileFlag(false);
     } else {
       setProfileFlag(true);
     }
   }, [profileInfoData, error]);
-
-  // const handleNext = (e) => {};
 
   const handleBack = (e) => {
     if (currentForm === "contactDetails") {
@@ -263,7 +244,6 @@ export default function StudioSignUp({ cities, categories }) {
             [id]: "",
           };
         });
-        // setCounter((counter += 1));
       } else {
         setError((prev) => {
           return {
@@ -488,52 +468,7 @@ export default function StudioSignUp({ cities, categories }) {
         });
       }
     }
-    // if (id === "studioServiceLocations") {
-    //   setprofileInfoData((prev) => {
-    //     return {
-    //       ...prev,
-    //       [id]: value,
-    //     };
-    //   });
-    //   if (validator(id, value)) {
-    //     setError((prev) => {
-    //       return {
-    //         ...prev,
-    //         [id]: "",
-    //       };
-    //     });
-    //   } else {
-    //     setError((prev) => {
-    //       return {
-    //         ...prev,
-    //         [id]: "Enter Valid Studio Service Locations",
-    //       };
-    //     });
-    //   }
-    // }
-    // if (id === "studioLanguagesKnown") {
-    //   setprofileInfoData((prev) => {
-    //     return {
-    //       ...prev,
-    //       [id]: value,
-    //     };
-    //   });
-    //   if (validator(id, value)) {
-    //     setError((prev) => {
-    //       return {
-    //         ...prev,
-    //         [id]: "",
-    //       };
-    //     });
-    //   } else {
-    //     setError((prev) => {
-    //       return {
-    //         ...prev,
-    //         [id]: "Enter Valid Studio Languages Known",
-    //       };
-    //     });
-    //   }
-    // }
+
     if (id === "studioAbout") {
       setprofileInfoData((prev) => {
         return {
@@ -557,71 +492,7 @@ export default function StudioSignUp({ cities, categories }) {
         });
       }
     }
-    // if (name) {
-    //   setprofileInfoData((prev) => {
-    //     return {
-    //       ...prev,
-    //       [name]: value,
-    //     };
-    //   });
-    // } else {
-    //   setprofileInfoData((prev) => {
-    //     return {
-    //       ...prev,
-    //       [id]: value,
-    //     };
-    //   });
-    // }
   };
-
-  // const handleLanguagesKnown = (languages) => {
-  //   setprofileInfoData((prev) => {
-  //     return {
-  //       ...prev,
-  //       studioLanguagesKnown: [...languages],
-  //     };
-  //   });
-  //   if (setprofileInfoData.studioLanguagesKnown !== "") {
-  //     setError((prev) => {
-  //       return {
-  //         ...prev,
-  //         studioLanguagesKnown: "",
-  //       };
-  //     });
-  //   } else {
-  //     setError((prev) => {
-  //       return {
-  //         ...prev,
-  //         studioLanguagesKnown: "Please Add at least one language",
-  //       };
-  //     });
-  //   }
-  // };
-
-  // const handleStudioLocations = (locations) => {
-  //   setprofileInfoData((prev) => {
-  //     return {
-  //       ...prev,
-  //       studioServiceLocations: [...locations],
-  //     };
-  //   });
-
-  //   if (setprofileInfoData.studioServiceLocations !== []) {
-  //     setError((prev) => {
-  //       return {
-  //         ...prev,
-  //         studioServiceLocations: "",
-  //       };
-  //     });
-  //   } else {
-  //     setError((prev) => {
-  //       return {
-  //         ...prev,
-  //         studioServiceLocations: "Please Add at least one service Location",
-  //       };
-  //     });
-  //   }
-  // };
   const handleProfileImage = (e) => {
     const localImg = e.target.files[0];
 
@@ -678,7 +549,6 @@ export default function StudioSignUp({ cities, categories }) {
             imageHandler={handleProfileImage}
             values={profileInfoData}
             handleSubmit={handleSubmit}
-            // onStudioLocations={handleStudioLocations}
           />
         );
 
@@ -710,7 +580,6 @@ export default function StudioSignUp({ cities, categories }) {
         <img
           className={classes.loginImage}
           alt="photographer holding camera and smiling"
-          // style={{ width: "505px", height: "607px", borderRadius: "10px" }}
           src="https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/pp-register-studio-image.jpg"
         />
       </Grid>
@@ -721,7 +590,6 @@ export default function StudioSignUp({ cities, categories }) {
               <img
                 className={classes.imgLogo}
                 alt="person with camera"
-                // style={{ width: "100px", height: "100px" }}
                 src={logo}
               />
             </Tooltip>

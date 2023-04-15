@@ -65,7 +65,6 @@ const ClientBookingHistory = () => {
         }
       )
       .then((response) => {
-        console.log(response.data);
         setBookings(response.data);
         setIsLoading(false);
       })

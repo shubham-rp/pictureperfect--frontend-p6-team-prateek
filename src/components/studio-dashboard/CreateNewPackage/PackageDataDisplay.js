@@ -19,8 +19,7 @@ const useStyles = makeStyles()((theme) => {
       fontSize: 11,
       borderRadius: 24,
       marginLeft: 450,
-      // background: "#6750a4",
-      // color: "white",
+ 
     },
   };
 });

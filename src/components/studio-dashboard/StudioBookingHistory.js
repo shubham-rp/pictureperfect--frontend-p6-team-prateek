@@ -198,7 +198,6 @@ function BookingTable() {
                   </span>{" "}
                   {handleDateDisplay(selectedBooking.toDate)}
                   <br />
-                  {/* add additional fields here */}
                 </DialogContentText>
               </DialogContent>
               <DialogActions>

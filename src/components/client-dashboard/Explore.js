@@ -18,10 +18,6 @@ import { CircularProgress } from "@mui/material";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { styled } from "@mui/material/styles";
 
-//import { categories } from "../../assets/mock-data/categories";
-//import { cities } from "../../assets/mock-data/cities";
-//import { studios } from "../../assets/mock-data/studios";
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -153,7 +149,6 @@ const Explore = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
           setStudios(response.data);
           setIsLoading(false);
         });
@@ -282,22 +277,6 @@ const Explore = () => {
                     })}
                   </RadioGroup>
                 </FormControl>
-                {/* <Autocomplete
-                freeSolo
-                id="free-solo-2-demo"
-                disableClearable
-                options={cities.map((city) => city.cityName)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Search City"
-                    InputProps={{
-                      ...params.InputProps,
-                      type: "search",
-                    }}
-                  />
-                )}
-              /> */}
               </Item>
             </Stack>
           </Grid>

@@ -28,7 +28,6 @@ const useStyles = makeStyles()((theme) => {
     },
 
     loginItems: {
-      // justifyContent: "center",
       alignItems: "center",
     },
 
@@ -57,11 +56,6 @@ export default function ContactDetails(props) {
   const { classes } = useStyles();
   return (
     <div>
-      {/* <div>
-        {!!props.errorMessage && (
-          <span style={{ color: "red" }}>{props.errorMessage}</span>
-        )}
-      </div> */}
       <Box
         component="form"
         sx={{
@@ -88,13 +82,7 @@ export default function ContactDetails(props) {
               </FormHelperText>
             )}
           </FormControl>
-          {/* <div>
-            {!!props.errorMessage.studioAddress && (
-              <span style={{ color: "red" }}>
-                {props.errorMessage.studioAddress}
-              </span>
-            )}
-          </div> */}
+
           <Box className={classes.categoryWidth}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">City</InputLabel>
@@ -115,15 +103,7 @@ export default function ContactDetails(props) {
               </Select>
             </FormControl>
           </Box>
-          {/* <TextField
-            id="studioCity"
-            value={props.values.studioCity}
-            className={classes.nameTextField}
-            onChange={props.handler}
-            label="City*"
-            multiline
-            maxRows={4}
-          /> */}
+
           <div>
             {!!props.errorMessage.studioCity && (
               <span style={{ color: "red" }}>
@@ -150,13 +130,7 @@ export default function ContactDetails(props) {
               </FormHelperText>
             )}
           </FormControl>
-          {/* <div>
-            {!!props.errorMessage.studioPincode && (
-              <span style={{ color: "red" }}>
-                {props.errorMessage.studioPincode}
-              </span>
-            )}
-          </div> */}
+
           <FormControl>
             <TextField
               id="studioPhoneNumber"
@@ -203,13 +177,7 @@ export default function ContactDetails(props) {
               </FormHelperText>
             )}
           </FormControl>
-          {/* <div>
-            {!!props.errorMessage.StudioPhoneNumber && (
-              <span style={{ color: "red" }}>
-                {props.errorMessage.StudioPhoneNumber}
-              </span>
-            )}
-          </div> */}
+
           <Button
             className={classes.signInButton}
             onClick={props.goback}

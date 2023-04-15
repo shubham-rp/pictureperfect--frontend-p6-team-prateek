@@ -124,9 +124,6 @@ function SignUpEndUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (validate()) {
-    //   window.alert("testing");
-    // }
 
     await signup(email, firstName, lastName, password);
   };

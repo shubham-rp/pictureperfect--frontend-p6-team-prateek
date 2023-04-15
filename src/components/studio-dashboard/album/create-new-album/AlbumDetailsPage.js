@@ -1,8 +1,6 @@
 import React from "react";
 
-import { useState, useEffect, createContext } from "react";
-import Toolbar from "@mui/material/Toolbar";
-import UploadIcon from "@mui/icons-material/Upload";
+import { useState, useEffect } from "react";
 import { makeStyles } from "tss-react/mui";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -16,29 +14,18 @@ import AlertTitle from "@mui/material/AlertTitle";
 
 import {
   Box,
-  Grid,
-  Paper,
-  Stack,
   Button,
   Divider,
   TextField,
   Typography,
   Card,
-  FormGroup,
 } from "@mui/material";
-import {
-  createTheme,
-  ThemeProvider,
-  styled,
-  useTheme,
-} from "@mui/material/styles";
-import ViewAlbums from "../view-albums/ViewAlbums";
 
 const useStyles = makeStyles()((theme) => {
   return {
     outerPage: {
       backgroundColor: "#FFFBFE",
-      borderColor: "yellow", //"grey.500"
+      borderColor: "yellow",
       border: 1,
       display: "flex",
       flexDirection: "column",
@@ -57,7 +44,7 @@ const useStyles = makeStyles()((theme) => {
 
     innerPage: {
       backgroundColor: "#FFFBFE",
-      borderColor: "yellow", //"grey.500"
+      borderColor: "yellow",
       border: 1,
       display: "flex",
       flexDirection: "column",
@@ -107,7 +94,7 @@ function AlbumDetailsPage(props) {
     Category: "",
     Discription: "",
   };
-  const [componentToBeDisplayed, setComponentToBeDisplayed] = useState("");
+
   const [showCreateAlbum, setShowCreateAlbum] = useState(true);
   const [createAlbum, setCreateAlbum] = useState(Alubumcard);
   const [albumName, setAlbumName] = useState("");
@@ -116,7 +103,7 @@ function AlbumDetailsPage(props) {
   const [category, setCategory] = useState("");
   const [discription, setDiscription] = useState("");
   const [images, setImages] = useState([]);
-  const [imageURLS, setImageURLs] = useState([]);
+
   const [albumList, setAlbumList] = useState(albums);
 
   const handelClick = () => {
@@ -126,7 +113,7 @@ function AlbumDetailsPage(props) {
     setCategory(event.target.value);
   };
   const handleCreateClick = () => {
-    if (albumName == "" || category == "") {
+    if (albumName === "" || category === "") {
       seterror(true);
       setAlbumCreated(false);
       return;
@@ -194,7 +181,6 @@ function AlbumDetailsPage(props) {
           noValidate
           autoComplete="off"
         >
-          {/* onSubmit={handleSubmit} */}
           <div>
             <TextField
               required
@@ -240,7 +226,6 @@ function AlbumDetailsPage(props) {
           </div>
         </Box>
 
-        {/* </CardContent> */}
         <CardActions>
           <Button
             variant="contained"

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
-// ss12345@der.com password: ErUtCiP876@1
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);

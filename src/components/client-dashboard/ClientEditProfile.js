@@ -111,7 +111,6 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
   };
 
   const handleUpdateBasicDetails = async (e) => {
-    // handle axios request to update basic details
     e.preventDefault();
     setBasicDetailsOpen(false);
     setIsLoading(true);
@@ -131,7 +130,7 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
       )
       .then((response) => {
         toast.success("Name Successfully Updated!");
-        console.log(response.data);
+
         setIsLoading(false);
       })
       .catch((error) => {
@@ -139,8 +138,6 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
         setIsLoading(false);
         console.error(error);
       });
-
-    console.log(editUserFirstName, editUserLastName);
   };
 
   const handleEditUserEmail = (e) => {
@@ -176,7 +173,7 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
       )
       .then((response) => {
         toast.success("Email Successfully updated!");
-        console.log(response.data);
+
         setIsEmailLoading(false);
       })
       .catch((error) => {
@@ -184,8 +181,6 @@ const ClientEditProfile = ({ clientFirstName, clientLastName }) => {
         setIsEmailLoading(false);
         console.error(error);
       });
-
-    console.log(editUserEmail);
   };
 
   const handleEmailOpen = () => {
