@@ -679,7 +679,9 @@ export default function BookingFlow() {
             {
               {
                 bookingForm: isLoading ? (
-                  <CircularProgress />
+                  <div className={classes.loader}>
+                    <CircularProgress />
+                  </div>
                 ) : (
                   <BookingForm
                     isLoading={isLoading}
