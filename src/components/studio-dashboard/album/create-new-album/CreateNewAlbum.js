@@ -93,7 +93,6 @@ const useStyles = makeStyles()((theme) => {
 });
 
 const CreateNewAlbum = ({ studioCategory }) => {
-  console.log(studioCategory);
   const { user } = useAuthContext();
   const Alubumcard = {
     name: "",
