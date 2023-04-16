@@ -8,7 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { Grid, Paper, Stack } from "@mui/material";
+import { Grid, Paper, Stack, Typography } from "@mui/material";
 import StudioCard from "./StudioCard";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -371,7 +371,30 @@ const Explore = () => {
                   })
                   .map((studio, index) => {
                     return <StudioCard {...studio} />;
-                  })}
+                  })}{" "}
+                {(() => {
+                  const filteredStudios = studios
+                    .filter((studio) => {
+                      if (selectedCity === "All") {
+                        return studio;
+                      }
+                      return studio.studioCity === selectedCity;
+                    })
+                    .filter((studio) => {
+                      if (selectedCategory === "All") {
+                        return studio;
+                      }
+                      return (
+                        studio.studioCategory.indexOf(selectedCategory) !== -1
+                      );
+                    });
+
+                  if (filteredStudios.length === 0) {
+                    return (
+                      <Typography variant="h4">No Studios Available</Typography>
+                    );
+                  }
+                })()}
               </Grid>
             </Grid>
           </Grid>
