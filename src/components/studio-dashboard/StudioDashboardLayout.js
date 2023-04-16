@@ -143,6 +143,7 @@ export default function StudioDashboardLayout({
   studioCategory,
   studioDailyRate,
   studioProfilePicture,
+  albums,
 }) {
   const [open, setOpen] = useState(false);
   const { logout } = useLogout();
@@ -296,7 +297,7 @@ export default function StudioDashboardLayout({
           {
             viewBookings: <StudioBookingHistory />,
 
-            createNewAlbum: <CreateNewAlbum />,
+            createNewAlbum: <CreateNewAlbum studioCategory={studioCategory} />,
             viewAlbums: <ViewAlbums />,
             editProfile: (
               <StudioEditProfile
@@ -324,6 +325,7 @@ export default function StudioDashboardLayout({
                 studioCategory={studioCategory}
                 studioDailyRate={studioDailyRate}
                 studioProfilePicture={studioProfilePicture}
+                albums={albums}
               />
             ),
           }[componentToBeDisplayed]

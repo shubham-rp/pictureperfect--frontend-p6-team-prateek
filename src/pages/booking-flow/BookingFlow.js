@@ -192,7 +192,7 @@ const useStyles = makeStyles()((theme) => {
       marginLeft: "auto",
       marginRight: 0,
     },
-    goBackButtoLink: {
+    goBackButtonLink: {
       textDecoration: "none",
     },
     loader: {
@@ -646,7 +646,7 @@ export default function BookingFlow() {
           <Toolbar />
           <Stack>
             <div className={classes.goBackButton}>
-              <Link to="/dashboard" className={classes.goBackButtoLink}>
+              <Link to="/dashboard" className={classes.goBackButtonLink}>
                 <Button variant="outlined" color="error">
                   <RotateLeftIcon />
                   Go Back
@@ -672,9 +672,9 @@ export default function BookingFlow() {
                 </Step>
               ))}
             </Stepper>
-            <div className={classes.loader}>
+            {/* <div className={classes.loader}>
               {isLoading && <CircularProgress />}
-            </div>
+            </div> */}
 
             {
               {

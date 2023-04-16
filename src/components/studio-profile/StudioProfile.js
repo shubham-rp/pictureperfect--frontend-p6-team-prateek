@@ -196,6 +196,7 @@ function StudioProfile({
   studioAbout,
   studioCategory,
   studioProfilePicture,
+  studioDailyRate,
   albums,
 }) {
   const { classes } = useStyles();
@@ -242,6 +243,7 @@ function StudioProfile({
               );
             })}
           </Typography>
+          <Typography>Daily Charges: ₹{studioDailyRate}</Typography>
         </Stack>
 
         <Stack className={classes.studioButtonsStack}>
@@ -341,10 +343,10 @@ function StudioProfile({
           className={classes.noAlbumText}
         >
           {albums.length ? (
-            albums.map((item) => {
+            albums.map((album) => {
               return (
                 <Card
-                  key={item._id}
+                  key={album._id}
                   sx={{
                     display: "flex",
                     justifyContent: "space-evenly",
@@ -359,15 +361,19 @@ function StudioProfile({
                 >
                   <CardHeader
                     avatar={
-                      <Avatar sx={{ bgcolor: "#6750A4" }} aria-label="recipe">
-                        {item.name[0]}
+                      <Avatar
+                        sx={{ bgcolor: "#6750A4" }}
+                        aria-label="recipe"
+                        src={album.images[0].imagesUrl}
+                      >
+                        {album.name[0]}
                       </Avatar>
                     }
-                    title={item.name}
+                    title={album.name}
                   />
                   <CardMedia
-                    key={item._id}
-                    image={item.images[0].imagesUrl}
+                    key={album._id}
+                    image={album.images[0].imagesUrl}
                     sx={{
                       height: 250,
                       objectFit: "cover",
@@ -376,7 +382,6 @@ function StudioProfile({
                   />
                   <CardActions>
                     <Button
-                      onClick={() => console.log("Hey")}
                       variant="contained"
                       className={classes.signInButton}
                       size="small"

@@ -613,7 +613,17 @@ export default function StudioSignUp({ cities, categories }) {
               </Step>
             ))}
           </Stepper>
-          {isLoading && <CircularProgress />}
+          {isLoading && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          )}
           {registerStudioError && (
             <div className={classes.error}>{registerStudioError}</div>
           )}

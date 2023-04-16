@@ -6,29 +6,38 @@ import {
   Grid,
   Stack,
   Typography,
+  CardHeader,
+  Card,
+  CardActions,
+  CardMedia,
 } from "@mui/material";
 import CallIcon from "@mui/icons-material/Call";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
-import { Link } from "react-router-dom";
+
 import { makeStyles } from "tss-react/mui";
-import ppLogo from "../../images/cropped-pp-logo.png";
 
 const useStyles = makeStyles()((theme) => {
   return {
     studioProfilePicture: {
       width: 128,
       height: 128,
-      margin: 16,
+      marginTop: 64,
+      marginBottom: 64,
+      "@media (max-width: 1024px)": {
+        marginTop: 0,
+        marginBottom: 0,
+      },
     },
     studioDetails: {
-      height: 300,
+      display: "flex",
+      justifyContent: "space-evenly",
       backgroundColor: "#E8DEF8",
     },
     studioAboutUs: {
-      height: 150,
+      textAlign: "center",
     },
     studioLocation: {
       height: 150,
@@ -118,8 +127,10 @@ const useStyles = makeStyles()((theme) => {
       textDecoration: "none",
     },
     subHeading: {
-      color: theme.palette.secondary.main,
-
+      color: "white",
+      backgroundColor: theme.palette.primary.main,
+      fontWeight: "bold",
+      borderRadius: 8,
       margin: 16,
     },
 
@@ -157,6 +168,22 @@ const useStyles = makeStyles()((theme) => {
     contactLinks: {
       textDecoration: "none",
     },
+    studioDetailsStack: {
+      marginTop: 64,
+      marginBottom: 64,
+      "@media (max-width: 1024px)": {
+        marginTop: 0,
+        marginBottom: 0,
+      },
+    },
+    studioButtonsStack: {
+      marginTop: 64,
+      marginBottom: 64,
+      "@media (max-width: 1024px)": {
+        marginTop: 0,
+        marginBottom: 0,
+      },
+    },
   };
 });
 
@@ -171,99 +198,94 @@ function StudioDashboardProfile({
   studioAbout,
   studioCategory,
   studioProfilePicture,
+  studioDailyRate,
+  albums,
 }) {
   const { classes } = useStyles();
 
   return (
     <Box>
       <Grid container className={classes.studioDetails}>
-        <Grid item xs={2} className={classes.profilePicture}>
-          <Avatar
-            alt="Remy Sharp"
-            src={ppLogo}
-            className={classes.studioProfilePicture}
-          />
-        </Grid>
+        <Avatar
+          alt="Remy Sharp"
+          src={studioProfilePicture}
+          className={classes.studioProfilePicture}
+        />
+        <Stack className={classes.studioDetailsStack}>
+          <Typography variant="h4" className={classes.studioTitle}>
+            {studioName}
+          </Typography>
+          <Typography variant="body" className={classes.studioCity}>
+            {" "}
+            <LocationOnIcon className={classes.locationIcon} />
+            {studioCity}
+          </Typography>
+          <Typography className={classes.studioContact}>
+            <a href={`tel:+91${studioPhoneNumber}`}>
+              <CallIcon className={classes.callIcon} /> {studioPhoneNumber}
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={`https://wa.me/+91${studioWhatsAppNumber}`}
+            >
+              <WhatsAppIcon className={classes.whatsAppIcon} />{" "}
+              {studioWhatsAppNumber}
+            </a>{" "}
+          </Typography>
 
-        <Grid item xs={6} className={classes.studioDetailsContent}>
-          <Stack>
-            <Typography variant="h4" className={classes.studioTitle}>
-              {studioName}
-            </Typography>
-            <Typography variant="body" className={classes.studioCity}>
-              {" "}
-              <LocationOnIcon className={classes.locationIcon} />
-              {studioCity}
-            </Typography>
-            <Typography className={classes.studioContact}>
-              <a href={`tel:+91${studioPhoneNumber}`}>
-                <CallIcon className={classes.callIcon} /> {studioPhoneNumber}
-              </a>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={`https://wa.me/+91${studioWhatsAppNumber}`}
-              >
-                <WhatsAppIcon className={classes.whatsAppIcon} />{" "}
-                {studioWhatsAppNumber}
-              </a>{" "}
-            </Typography>
+          <Typography variant="body">
+            {studioCategory.map((category, index) => {
+              return (
+                <span key={index} className={classes.categoryTextItem}>
+                  {category}
+                </span>
+              );
+            })}
+          </Typography>
+          <Typography>Daily Charges: ₹{studioDailyRate}</Typography>
+        </Stack>{" "}
+        <Stack className={classes.studioButtonsStack}>
+          <div>
+            <Button variant="contained" className={classes.studioButtons}>
+              <CheckCircleIcon className={classes.checkIcon} /> Book Now
+            </Button>
 
-            <Typography variant="body">
-              {studioCategory.map((category, index) => {
-                return (
-                  <span key={index} className={classes.categoryTextItem}>
-                    {category}
-                  </span>
-                );
-              })}
-            </Typography>
-          </Stack>
-        </Grid>
-        <Grid item xs={4} className={classes.buttonGroup}>
-          {" "}
-          <Stack>
-            <div>
-              <Button variant="contained" className={classes.studioButtons}>
-                <CheckCircleIcon className={classes.checkIcon} /> Book Now
+            <Button
+              className={classes.studioButtons}
+              variant="outlined"
+              color="error"
+            >
+              <RotateLeftIcon />
+              Go Back
+            </Button>
+          </div>
+          <div>
+            <a
+              href={`tel:+91${studioPhoneNumber}`}
+              className={classes.contactLinks}
+            >
+              <Button variant="contained" className={classes.callButton}>
+                <CallIcon className={classes.callButtonIcon} /> Call
               </Button>
-
-              <Button
-                className={classes.studioButtons}
-                variant="outlined"
-                color="error"
-              >
-                <RotateLeftIcon />
-                Go Back
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={`https://wa.me/+91${studioWhatsAppNumber}`}
+              className={classes.contactLinks}
+            >
+              <Button variant="contained" className={classes.whatsAppButton}>
+                <WhatsAppIcon className={classes.whatsAppButtonIcon} />
+                WhatsApp
               </Button>
-            </div>
-            <div>
-              <a
-                href={`tel:+91${studioPhoneNumber}`}
-                className={classes.contactLinks}
-              >
-                <Button variant="contained" className={classes.callButton}>
-                  <CallIcon className={classes.callButtonIcon} /> Call
-                </Button>
-              </a>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={`https://wa.me/+91${studioWhatsAppNumber}`}
-                className={classes.contactLinks}
-              >
-                <Button variant="contained" className={classes.whatsAppButton}>
-                  <WhatsAppIcon className={classes.whatsAppButtonIcon} />
-                  WhatsApp
-                </Button>
-              </a>
-            </div>
-          </Stack>
-        </Grid>
+            </a>
+          </div>
+        </Stack>
       </Grid>
       <Divider orientation="horizontal" flexItem />
       <Grid container>
-        <Grid item xs={7} className={classes.studioAboutUs}>
+        <Grid item lg={8} xs={12} className={classes.studioAboutUs}>
           <Typography variant="h6" className={classes.subHeading}>
             About Us
           </Typography>
@@ -272,8 +294,8 @@ function StudioDashboardProfile({
             {studioAbout}
           </Typography>
         </Grid>
-        <Divider orientation="vertical" flexItem />
-        <Grid item xs={4} className={classes.studioLocation}>
+
+        <Grid item lg={4} xs={12} className={classes.studioLocation}>
           <Typography variant="h6" className={classes.subHeading}>
             Location
           </Typography>
@@ -288,12 +310,75 @@ function StudioDashboardProfile({
         </Grid>
       </Grid>
       <Divider orientation="horizontal" flexItem />
-      <Grid container className={classes.studioAlbumsPackages}>
-        <Grid item xs={2} className={classes.studioAlbumsPackagesHeader}>
-          <Typography variant="h6"> Albums</Typography>
-        </Grid>
-        <Grid item xs={10} className={classes.studioAlbumsPackages}>
-          Album List
+      <Grid container className={classes.studioAlbumsPackagesHeader}>
+        <Typography variant="h6" className={classes.albumHeader}>
+          {" "}
+          Albums
+        </Typography>
+        <Grid
+          container
+          spacing={2}
+          paddingTop={2}
+          xm={1}
+          className={classes.noAlbumText}
+        >
+          {albums.length ? (
+            albums.map((album) => {
+              console.log("album" + album.images);
+              return (
+                <Card
+                  key={album._id}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    flexDirection: "column",
+                    maxWidth: 400,
+                    height: 300,
+                    width: 900,
+                    marginBottom: "3%",
+                    marginLeft: "4%",
+                    marginTop: "0.1%",
+                  }}
+                >
+                  <CardHeader
+                    avatar={
+                      <Avatar
+                        sx={{ bgcolor: "#6750A4" }}
+                        src={album.images[0].imagesUrl}
+                        aria-label="recipe"
+                      >
+                        {album.name[0]}
+                      </Avatar>
+                    }
+                    title={album.name}
+                  />
+                  <CardMedia
+                    key={album._id}
+                    image={album.images[0].imagesUrl}
+                    sx={{
+                      height: 250,
+                      objectFit: "cover",
+                    }}
+                    title="green iguana"
+                  />
+                  <CardActions>
+                    <Button
+                      variant="contained"
+                      className={classes.signInButton}
+                      size="small"
+                      fullWidth
+                    >
+                      View
+                    </Button>
+                  </CardActions>
+                </Card>
+              );
+            })
+          ) : (
+            <Typography variant="h6" sx={{ padding: 16 }}>
+              No Albums present
+            </Typography>
+          )}
         </Grid>
       </Grid>
     </Box>

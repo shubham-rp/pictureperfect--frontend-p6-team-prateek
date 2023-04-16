@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Box } from "@mui/material";
 
 import StudioDashboardLayout from "../../../components/studio-dashboard/StudioDashboardLayout";
 
@@ -34,7 +35,15 @@ function StudioDashboard() {
   return (
     <>
       {isLoading ? (
-        <CircularProgress />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       ) : (
         <StudioDashboardLayout {...studioData} />
       )}

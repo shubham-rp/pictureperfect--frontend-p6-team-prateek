@@ -14,6 +14,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
+import { Box } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { styled } from "@mui/material/styles";
@@ -221,7 +222,15 @@ const Explore = () => {
   return (
     <>
       {isLoading ? (
-        <CircularProgress />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       ) : (
         <Grid container direction="row" spacing={3}>
           <Grid item xs={2}>

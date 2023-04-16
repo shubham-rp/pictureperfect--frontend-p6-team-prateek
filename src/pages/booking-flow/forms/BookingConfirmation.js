@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Stack, Button, CssBaseline, Typography } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -33,6 +34,9 @@ const useStyles = makeStyles()((theme) => {
     bookingText: {
       fontWeight: "bolder",
     },
+    goBackButtonLink: {
+      textDecoration: "none",
+    },
   };
 });
 
@@ -58,13 +62,15 @@ function BookingConfirmation({ bookingId }) {
             <span className={classes.bookingText}>Booking Id:</span> {bookingId}
           </Typography>
           <Box className={classes.goToHomeButtonWrapper}>
-            <Button
-              variant="contained"
-              className={classes.goToHomeButton}
-              type="submit"
-            >
-              Go To Home
-            </Button>
+            <Link to="/dashboard" className={classes.goBackButtonLink}>
+              <Button
+                variant="contained"
+                className={classes.goToHomeButton}
+                type="submit"
+              >
+                Go To Home
+              </Button>
+            </Link>
           </Box>
         </Stack>
       </Box>

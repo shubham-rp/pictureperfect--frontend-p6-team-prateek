@@ -9,7 +9,7 @@ import FormControl from "@mui/material/FormControl";
 
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import { categories } from "../../../../assets/mock-data/categories";
+
 import ImageUploading from "react-images-uploading";
 import { Grid, Paper, Button, TextField, Typography } from "@mui/material";
 
@@ -92,23 +92,21 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const CreateNewAlbum = () => {
+const CreateNewAlbum = ({ studioCategory }) => {
+  console.log(studioCategory);
   const { user } = useAuthContext();
   const Alubumcard = {
     name: "",
     category: "",
     description: "",
   };
-  const [showCreateAlbum, setShowCreateAlbum] = useState(true);
+
   const [createAlbum, setCreateAlbum] = useState(Alubumcard);
   const [albumCreated, setAlbumCreated] = useState(false);
   const [error, seterror] = useState(false);
   const [images, setImages] = useState([]);
   const maxNumber = 10;
 
-  const handelClick = (e) => {
-    setShowCreateAlbum(!showCreateAlbum);
-  };
   const handleCreateClick = async () => {
     if (
       createAlbum.name === "" ||
@@ -213,12 +211,8 @@ const CreateNewAlbum = () => {
                   sx={{ minWidth: 200 }}
                   onChange={handleInputChange}
                 >
-                  {categories.map((category) => {
-                    return (
-                      <MenuItem value={category.categoryName}>
-                        {category.categoryName}
-                      </MenuItem>
-                    );
+                  {studioCategory.map((category) => {
+                    return <MenuItem value={category}>{category}</MenuItem>;
                   })}
                 </Select>
               </FormControl>
@@ -321,16 +315,6 @@ const CreateNewAlbum = () => {
                   paddingTop="2"
                 >
                   Create
-                </Button>
-
-                <Button
-                  item
-                  variant="contained"
-                  className={classes.signInButton}
-                  onClick={handelClick}
-                  size="small"
-                >
-                  Back
                 </Button>
               </Grid>
             </Grid>

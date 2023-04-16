@@ -3,6 +3,7 @@ import { CircularProgress } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "tss-react/mui";
 import {
+  Box,
   Table,
   TableBody,
   TableCell,
@@ -98,7 +99,15 @@ const ClientBookingHistory = () => {
   return (
     <>
       {isLoading ? (
-        <CircularProgress />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       ) : (
         <>
           <TableContainer component={Paper}>

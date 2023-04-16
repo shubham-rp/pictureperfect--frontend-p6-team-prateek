@@ -15,6 +15,7 @@ import CardActions from "@mui/material/CardActions";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
+import { Box } from "@mui/material";
 
 import axios from "axios";
 
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const itemsPerPage = 6;
-export default function ViewAlbums({ details }) {
+export default function ViewAlbums() {
   const { user } = useAuthContext();
   const classes = useStyles();
   const [currentPage, setCurrentPage] = useState(1);
@@ -107,7 +108,12 @@ export default function ViewAlbums({ details }) {
   const handleDeleteButton = (cardId) => {
     axios
       .delete(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/studios/albums/delete/${cardId}`
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/studios/albums/delete/${cardId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       )
       .then((response) => {
         setDeletealbum(!deleteAlbum);
@@ -125,7 +131,15 @@ export default function ViewAlbums({ details }) {
     <>
       {" "}
       {loading ? (
-        <CircularProgress />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       ) : showPage ? (
         <DisplayAlbums
           albumName={albumName}

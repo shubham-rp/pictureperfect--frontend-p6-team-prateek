@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import StudioSignUp from "../../components/signup/StudioSignUp";
 
 function RegisterPhotoStudio() {
@@ -47,7 +48,15 @@ function RegisterPhotoStudio() {
   return (
     <>
       {isLoading ? (
-        <CircularProgress />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       ) : (
         <StudioSignUp categories={categories} cities={cities} />
       )}
