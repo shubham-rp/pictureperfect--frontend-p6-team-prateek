@@ -12,7 +12,7 @@ import { Box } from "@mui/material";
 
 import StepLabel from "@mui/material/StepLabel";
 
-import logo from "../../assets/images/logo.png";
+import logo from "../../images/pp-logo.png";
 import LoginInfo from "./studioForms/LoginInfo";
 import ContactDetails from "./studioForms/ContactDetails";
 import ProfileInfo from "./studioForms/ProfileInfo";
@@ -64,8 +64,9 @@ const useStyles = makeStyles()((theme) => {
     },
 
     imgLogo: {
-      height: 210,
-      width: 210,
+      width: 250,
+      paddingTop: 32,
+      paddingBottom: 32,
     },
     error: {
       width: "40%",

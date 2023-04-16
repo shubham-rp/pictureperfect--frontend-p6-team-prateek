@@ -92,6 +92,9 @@ const useStyles = makeStyles()((theme) => {
       borderRadius: 24,
       fontFamily: "Roboto",
     },
+    loginPage: {
+      background: `linear-gradient(to left, rgb(161, 255, 206, 0.3), rgb(250, 255, 209, 0.3))`,
+    },
   };
 });
 
@@ -107,7 +110,7 @@ function Login() {
     await login(email, password);
   };
   return (
-    <Grid container>
+    <Grid container className={classes.loginPage}>
       <Grid
         item
         container

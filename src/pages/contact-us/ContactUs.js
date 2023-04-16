@@ -37,7 +37,7 @@ const useStyles = makeStyles()((theme) => {
     },
     appBar: {
       flexGrow: 1,
-      backgroundColor: "#FFFFFF",
+      background: `linear-gradient(to right, rgb(161, 255, 206, 0.3), rgb(250, 255, 209, 0.3))`,
     },
     toolbar: {
       display: "flex",
@@ -66,8 +66,8 @@ const useStyles = makeStyles()((theme) => {
     },
     appBarButton: {
       margin: 13,
-      height: 72,
-      fontSize: 28,
+      height: 48,
+      fontSize: 20,
       textTransform: "none",
       background: "#7D5260",
       borderRadius: 100,
@@ -89,6 +89,10 @@ const useStyles = makeStyles()((theme) => {
     },
     buttonGroup: {
       textAlign: "left",
+    },
+    contactUsBox: {
+      height: "84vh",
+      background: `linear-gradient(to right, rgb(161, 255, 206, 0.3), rgb(250, 255, 209, 0.3))`,
     },
   };
 });
@@ -123,7 +127,7 @@ function ContactUs() {
           </Toolbar>
         </AppBar>
       </Box>
-      <Grid container>
+      <Grid container className={classes.contactUsBox}>
         <Grid
           item
           container

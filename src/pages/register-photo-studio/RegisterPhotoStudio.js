@@ -46,7 +46,11 @@ function RegisterPhotoStudio() {
   }, [setIsLoading, setCategories, setCities]);
 
   return (
-    <>
+    <Box
+      sx={{
+        background: `linear-gradient(to left, rgb(161, 255, 206, 0.3), rgb(250, 255, 209, 0.3))`,
+      }}
+    >
       {isLoading ? (
         <Box
           sx={{
@@ -60,7 +64,7 @@ function RegisterPhotoStudio() {
       ) : (
         <StudioSignUp categories={categories} cities={cities} />
       )}
-    </>
+    </Box>
   );
 }
 
