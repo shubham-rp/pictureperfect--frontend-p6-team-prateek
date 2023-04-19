@@ -1,23 +1,31 @@
 import { useState, useEffect } from "react";
 import { makeStyles } from "tss-react/mui";
 import axios from "axios";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
-import { Grid, Paper, Stack, Typography } from "@mui/material";
-import StudioCard from "./StudioCard";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import Button from "@mui/material/Button";
-import { Box } from "@mui/material";
-import { CircularProgress } from "@mui/material";
-import { useAuthContext } from "../../hooks/useAuthContext";
+
+import {
+  CircularProgress,
+  Box,
+  Button,
+  Select,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+  Autocomplete,
+  TextField,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+  InputLabel,
+  MenuItem,
+} from "@mui/material";
+
 import { styled } from "@mui/material/styles";
+
+import StudioCard from "./StudioCard";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -111,6 +119,7 @@ const useStyles = makeStyles()((theme) => {
     grid: {
       display: "flex",
       flexWrap: "wrap",
+      padding: "10",
     },
   };
 });
@@ -233,7 +242,7 @@ const Explore = () => {
         </Box>
       ) : (
         <Grid container direction="row" spacing={3}>
-          <Grid item xs={2}>
+          <Grid item lg={2} md={4}>
             <Stack spacing={4}>
               <Item>
                 <FormControl>
@@ -289,7 +298,7 @@ const Explore = () => {
               </Item>
             </Stack>
           </Grid>
-          <Grid item container xs={10} spacing={2}>
+          <Grid item container md={8} lg={10} spacing={2}>
             <Grid item xs={12}>
               <Grid item xs container direction="row" spacing={1}>
                 <Grid item md={4} className={classes.categorySearch}>

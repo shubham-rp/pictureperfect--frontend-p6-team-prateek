@@ -12,6 +12,7 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { makeStyles } from "tss-react/mui";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { Box } from "@mui/material";
 
 import {
   StudioProfileDisplayContext,
@@ -60,6 +61,11 @@ const useStyles = makeStyles()((theme) => {
       marginRight: 2,
       borderRadius: 16,
     },
+    cardWrapper: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
   };
 });
 
@@ -82,58 +88,81 @@ export default function StudioCard({
   const { setComponentToBeDisplayed } = useContext(StudioProfileDisplayContext);
   const { setStudioData } = useContext(StudioProfileDataContext);
   return (
-    <Card sx={{ width: 320, borderRadius: 4, margin: 2 }}>
-      <CardHeader
-        className={classes.cardTitle}
-        avatar={<Avatar alt={studioName} src={studioProfilePicture} />}
-        action={
-          <IconButton aria-label="settings">
-            {isStarred ? (
-              <StarIcon className={classes.star} />
-            ) : (
-              <StarBorderIcon />
-            )}
-          </IconButton>
-        }
-        titleTypographyProps={{ variant: "h6" }}
-        title={studioName}
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        src={studioProfilePicture}
-        alt="Wedding"
-      />
-      <CardContent>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          className={classes.cardText}
-        >
-          <LocationOnIcon />
-          {studioCity}
-        </Typography>
+    <Box className={classes.cardWrapper}>
+      <Card sx={{ width: 320, borderRadius: 4, margin: 2 }}>
+        <CardHeader
+          className={classes.cardTitle}
+          avatar={<Avatar alt={studioName} src={studioProfilePicture} />}
+          action={
+            <IconButton aria-label="settings">
+              {isStarred ? (
+                <StarIcon className={classes.star} />
+              ) : (
+                <StarBorderIcon />
+              )}
+            </IconButton>
+          }
+          titleTypographyProps={{ variant: "h6" }}
+          title={studioName}
+        />
+        <CardMedia
+          component="img"
+          height="194"
+          src={studioProfilePicture}
+          alt="Wedding"
+        />
+        <CardContent>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            className={classes.cardText}
+          >
+            <LocationOnIcon />
+            {studioCity}
+          </Typography>
 
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          className={classes.categoryText}
-        >
-          {studioCategory?.map((category, index) => {
-            return (
-              <p key={index} className={classes.categoryTextItem}>
-                {category}
-              </p>
-            );
-          })}
-        </Typography>
-        <span className={classes.buttonGroup}>
-          <Button
-            variant="outlined"
-            className={classes.button}
-            onClick={() => {
-              setComponentToBeDisplayed("studioProfile");
-              setStudioData({
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            className={classes.categoryText}
+          >
+            {studioCategory?.map((category, index) => {
+              return (
+                <p key={index} className={classes.categoryTextItem}>
+                  {category}
+                </p>
+              );
+            })}
+          </Typography>
+          <span className={classes.buttonGroup}>
+            <Button
+              variant="outlined"
+              className={classes.button}
+              onClick={() => {
+                setComponentToBeDisplayed("studioProfile");
+                setStudioData({
+                  studio,
+                  studioName,
+                  studioCity,
+                  studioPhoneNumber,
+                  studioWhatsAppNumber,
+                  studioAddress,
+                  studioPincode,
+                  studioAbout,
+                  studioCategory,
+                  studioProfilePicture,
+                  studioDailyRate,
+                  albums,
+                });
+              }}
+            >
+              View Details
+            </Button>
+
+            <Link
+              to="/booking-flow"
+              className={classes.bookNowLink}
+              state={{
                 studio,
                 studioName,
                 studioCity,
@@ -146,36 +175,15 @@ export default function StudioCard({
                 studioProfilePicture,
                 studioDailyRate,
                 albums,
-              });
-            }}
-          >
-            View Details
-          </Button>
-
-          <Link
-            to="/booking-flow"
-            className={classes.bookNowLink}
-            state={{
-              studio,
-              studioName,
-              studioCity,
-              studioPhoneNumber,
-              studioWhatsAppNumber,
-              studioAddress,
-              studioPincode,
-              studioAbout,
-              studioCategory,
-              studioProfilePicture,
-              studioDailyRate,
-              albums,
-            }}
-          >
-            <Button variant="contained" className={classes.button}>
-              Book Now
-            </Button>
-          </Link>
-        </span>
-      </CardContent>
-    </Card>
+              }}
+            >
+              <Button variant="contained" className={classes.button}>
+                Book Now
+              </Button>
+            </Link>
+          </span>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
