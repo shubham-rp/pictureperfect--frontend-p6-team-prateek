@@ -17,6 +17,33 @@ import {
 
 import { makeStyles } from "tss-react/mui";
 
+const itemData = [
+  {
+    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/wedding.jpeg",
+    title: "Wedding",
+  },
+  {
+    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/babies-and-kids.jpeg",
+    title: "Babies & Kids",
+  },
+  {
+    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/special-occasion.jpeg",
+    title: "Special Occasion",
+  },
+  {
+    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/fashion.png",
+    title: "Fashion & Portfolio",
+  },
+  {
+    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/commercial.jpeg",
+    title: "Commercial",
+  },
+  {
+    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/corporate.jpeg",
+    title: "Corporate Events",
+  },
+];
+
 const useStyles = makeStyles()((theme) => {
   return {
     mainBox: {
@@ -263,29 +290,4 @@ function LandingPage() {
 
 export default LandingPage;
 
-const itemData = [
-  {
-    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/wedding.jpeg",
-    title: "Wedding",
-  },
-  {
-    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/babies-and-kids.jpeg",
-    title: "Babies & Kids",
-  },
-  {
-    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/special-occasion.jpeg",
-    title: "Special Occasion",
-  },
-  {
-    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/fashion.png",
-    title: "Fashion & Portfolio",
-  },
-  {
-    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/commercial.jpeg",
-    title: "Commercial",
-  },
-  {
-    img: "https://picture-perfect-pesto.s3.ap-south-1.amazonaws.com/corporate.jpeg",
-    title: "Corporate Events",
-  },
-];
+
