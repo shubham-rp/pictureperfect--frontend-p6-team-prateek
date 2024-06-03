@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import axios from "axios";
 import { makeStyles } from "tss-react/mui";
 import { Box, Button, Stack, Typography } from "@mui/material";
 
@@ -42,7 +40,6 @@ export default function BookingFlow({
 }) {
   const { classes } = useStyles();
 
-  const paymentHandler = async (amount) => {};
 
   return (
     <>
